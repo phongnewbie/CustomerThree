@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Neighbour Artusi By Night - OpenTable</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: white;
+            padding: 12px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .logo::before {
+            content: '';
+            width: 32px;
+            height: 32px;
+            background: #da3743;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .sign-in {
+            background: #247ba0;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .hero-image {
+            height: 400px;
+            background-image: url('https://resizer.otstatic.com/v3/photos/32600163-3?width=1280&height=720&webp=true');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-count {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .save-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            padding: 40px 20px;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .restaurant-header {
+            padding: 32px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .restaurant-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+
+        .rating-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .star {
+            color: #da3743;
+            font-size: 18px;
+        }
+
+        .rating-details {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+
+        .nav-tab {
+            padding: 16px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav-tab.active {
+            color: #da3743;
+            border-bottom-color: #da3743;
+        }
+
+        .tab-content {
+            padding: 32px;
+        }
+
+        .about-section h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .tags {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .read-more {
+            color: #da3743;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .concierge-section {
+            background: #f8f4ff;
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 32px;
+        }
+
+        .concierge-title {
+            color: #805ad5;
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ai-beta {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .concierge-questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .concierge-btn {
+            background: white;
+            border: 1px solid #d1d5db;
+            padding: 12px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .concierge-btn:hover {
+            background: #f9fafb;
+        }
+
+        .booking-panel {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .booking-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #2d3748;
+        }
+
+        /* Reservation panel inputs styled like the screenshot */
+        .input-stack { display: grid; gap: 12px; position: relative; }
+        .input-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            color: #111827;
+        }
+        .input-btn .left { display: flex; align-items: center; gap: 10px; }
+        .chevron { color: #6b7280; }
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .info-alert {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            font-size: 12px;
+            color: #374151;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+        .info-alert .dot { color: #6b7280; font-size: 18px; line-height: 1; }
+
+        .notify-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .booked-today { color: #6b7280; font-size: 12px; margin-top: 8px; }
+        .primary-outline-btn {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #d1d5db;
+            color: #111827;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .map-card { margin-top: 16px; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; }
+        .map-embed { width: 100%; height: 160px; border: 0; display: block; }
+        .address-row { display: flex; align-items: center; gap: 8px; padding: 8px 8px 10px 8px; }
+        .address-row .addr { color: #dc2626; font-size: 12px; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .chip { padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 999px; background: #fff; font-size: 12px; color: #374151; }
+
+        .section-title { margin-top: 16px; font-weight: 600; color: #111827; font-size: 14px; }
+        .info-list { margin-top: 8px; display: grid; gap: 12px; }
+        .info-row { display: grid; grid-template-columns: 18px 1fr; align-items: start; gap: 10px; }
+        .info-row .label { font-weight: 600; color: #111827; font-size: 13px; }
+        .info-row .value { color: #374151; font-size: 13px; }
+        .view-more { display: inline-block; margin-top: 10px; color: #da3743; font-size: 13px; text-decoration: none; }
+        .native-picker { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; }
+
+        /* Reviews Section */
+        .reviews-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        .reviews-subtitle {
+            color: #666;
+            margin-bottom: 24px;
+        }
+        .reviews-note {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stars {
+            color: #da3743;
+            font-size: 20px;
+        }
+        .rating-text {
+            color: #4a5568;
+            font-size: 14px;
+        }
+        .rating-distribution {
+            margin-bottom: 24px;
+        }
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .rating-number {
+            width: 20px;
+            color: #4a5568;
+            font-size: 14px;
+        }
+        .bar-container {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            background: #da3743;
+            border-radius: 4px;
+        }
+        .category-ratings {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .category-box {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        .category-score {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+        .category-name {
+            font-size: 12px;
+            color: #666;
+        }
+        .noise-level {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        .noise-icon {
+            font-size: 16px;
+        }
+        .loved-for-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .loved-chips {
+            position: relative;
+            margin-bottom: 32px;
+        }
+        .chip-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .chip-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .loved-chip {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #4a5568;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .loved-chip:hover {
+            background: #edf2f7;
+        }
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: #4a5568;
+        }
+        .scroll-arrow.left { left: -16px; }
+        .scroll-arrow.right { right: -16px; }
+        .review-summary h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ai-note {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .summary-text {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .search-container {
+            position: relative;
+            max-width: 400px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #da3743;
+            box-shadow: 0 0 0 3px rgba(218, 55, 67, 0.1);
+        }
+
+        /* Popup calendar & time dropdown */
+        .dropdown-panel { z-index: 3000; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.12); width: 280px; padding: 10px; }
+        .calendar { user-select: none; }
+        .cal-header { display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #111827; margin-bottom: 6px; }
+        .cal-nav { display: flex; gap: 6px; }
+        .icon-btn { width: 28px; height: 28px; border: 1px solid #e5e7eb; background:#fff; border-radius: 6px; cursor: pointer; }
+        .cal-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; color:#6b7280; font-size: 11px; margin: 6px 0; text-align:center; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+        .cal-cell { padding: 8px 0; text-align: center; border-radius: 6px; cursor: pointer; font-size: 12px; color:#111827; }
+        .cal-cell.is-other { color:#9ca3af; }
+        .cal-cell.is-today { outline: 1px dashed #94a3b8; }
+        .cal-cell:hover { background:#f3f4f6; }
+        .cal-cell.is-selected { background:#111827; color:#fff; }
+        .time-panel { width: 200px; max-height: 220px; overflow: auto; padding: 8px; }
+        .time-option { display:block; width:100%; text-align:left; padding:8px 10px; border-radius:6px; border:1px solid transparent; background:#fff; cursor:pointer; font-size:12px; color:#111827; }
+        .time-option:hover { background:#f3f4f6; }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .date-time-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .time-slot {
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #da3743;
+            color: #da3743;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .time-slot.selected {
+            background: #da3743;
+            color: white;
+        }
+
+        .notify-btn {
+            background: white;
+            border: 1px solid #da3743;
+            color: #da3743;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .booking-info {
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 16px;
+        }
+
+        .ask-question-btn {
+            background: #805ad5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 16px;
+            transition: background 0.2s;
+        }
+
+        .ask-question-btn:hover {
+            background: #6b46c1;
+        }
+
+        .photos-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .photos-subtitle {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 8px;
+            height: 400px;
+        }
+
+        .photo-item {
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-item.large {
+            grid-row: span 2;
+        }
+
+        .photo-item.more {
+            position: relative;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 18px;
+        }
+
+        .photo-placeholder.neon {
+            background-image: url('https://resizer.otstatic.com/v3/photos/32600163-3?width=752&height=752&webp=true');
+            position: relative;
+        }
+
+
+       
+
+        .photo-placeholder.interior {
+           background-image: url('https://resizer.otstatic.com/v3/photos/32600178-2?width=752&height=752&webp=true');
+        }
+
+
+        .photo-placeholder.dining {
+            background-image: url('https://resizer.otstatic.com/v3/photos/32600169-3?width=752&height=752&webp=true');
+        }
+
+
+        .photo-placeholder.food {
+           background-image: url('https://resizer.otstatic.com/v3/photos/32600170-3?width=752&height=752&webp=true');
+        }
+
+
+        .photo-placeholder.more-overlay {
+            background: rgba(0,0,0,0.7);
+            background-image: url('https://resizer.otstatic.com/v3/photos/32600168-3?width=752&height=752&webp=true');
+            font-size: 16px;
+        }
+        .photo-placeholder.more-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .menu-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .menu-subtitle {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .menu-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .menu-tab {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .menu-tab.active {
+            background: #da3743;
+            color: white;
+            border-color: #da3743;
+        }
+
+        .menu-category h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 48px;
+            row-gap: 28px;
+        }
+
+        /* Collapsible list for Savoury */
+        .collapsible {
+            position: relative;
+            max-height: 520px;
+            overflow: hidden;
+        }
+        .collapsible.expanded { max-height: none; }
+        .collapsible:not(.expanded)::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 64px;
+            background: linear-gradient(to top, #ffffff, rgba(255,255,255,0));
+        }
+        .show-more-btn {
+            margin-top: 12px;
+            background: #fff;
+            border: 1px solid #d1d5db;
+            color: #111827;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .menu-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: start;
+            gap: 8px 16px;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .menu-item:last-child { border-bottom: none; }
+
+        .menu-item-info h5 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .menu-item-info p {
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            max-width: none;
+            font-size: 13px;
+        }
+
+        .menu-note {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .menu-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            white-space: nowrap;
+            margin-left: 12px;
+        }
+
+        .additional-options {
+            color: #4a5568;
+            font-size: 14px;
+            margin-top: 16px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .hero-image {
+                height: 250px;
+            }
+            
+            .restaurant-title {
+                font-size: 24px;
+            }
+            
+            .nav-tabs {
+                overflow-x: auto;
+            }
+            
+            .time-slots {
+                grid-template-columns: 1fr;
+            }
+
+            .photos-grid {
+                grid-template-columns: 1fr 1fr;
+                height: 300px;
+            }
+
+            .photo-item.large {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .menu-tabs {
+                flex-direction: column;
+            }
+
+            .menu-items { grid-template-columns: 1fr; }
+            .menu-item { grid-template-columns: 1fr auto; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">OpenTable</div>
+        <div class="location">📍 Adelaide › Central</div>
+        <button class="sign-in">Sign in</button>
+    </header>
+
+    <div class="hero-image">
+        <button class="save-btn">💾 Save this restaurant</button>
+        <div class="photo-count">See all 116 photos</div>
+    </div>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="restaurant-header">
+                <h1 class="restaurant-title">Hello Neighbour Artusi By Night</h1>
+                <div class="rating-info">
+                    <span class="star">★</span>
+                    <span class="rating-details">4.7 (490) • $40 and under • Breakfast</span>
+                </div>
+            </div>
+
+            <nav class="nav-tabs">
+                <button class="nav-tab active" onclick="showTab('overview')">Overview</button>
+                <button class="nav-tab" onclick="showTab('photos')">Photos</button>
+                <button class="nav-tab" onclick="showTab('menu')">Menu</button>
+                <button class="nav-tab" onclick="showTab('reviews')">Reviews</button>
+                <button class="nav-tab" onclick="showTab('details')">Details</button>
+            </nav>
+
+            <div class="tab-content">
+                <div id="overview" class="tab-panel">
+                    <div class="about-section">
+                        <h3>About this restaurant</h3>
+                        <div class="tags">
+                            <span class="tag">Neighborhood gem</span>
+                            <span class="tag">Great for outdoor dining</span>
+                            <span class="tag">Great for brunch</span>
+                        </div>
+                        <div class="description">
+                            Hello Neighbour by day, Artusi by Night.<br>
+                            Brunch, coffee & brekky cocktails from Wednesday to Sunday 7am til 3pm...
+                        </div>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                    
+                    
+                    
+                    <div class="photos-section">
+                        <h3>116 Photos</h3>
+                        <p class="photos-subtitle">Explore Hello Neighbour Artusi By Night's photos.</p>
+                        <div class="photos-grid">
+                            <div class="photo-item large">
+                                <div class="photo-placeholder neon"></div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder interior"></div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder dining"></div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder food"></div>
+                            </div>
+                            <div class="photo-item more">
+                                <div class="photo-placeholder more-overlay">+111 More</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <h3>Menu</h3>
+                        <p class="menu-subtitle">Hello Neighbour Artusi By Night's menu.</p>
+                        <div class="menu-tabs">
+                            <button class="menu-tab active" data-menu="hello">Hello Neighbour Menu</button>
+                            <button class="menu-tab" data-menu="artusi">Artusi By Night Menu</button>
+                        </div>
+                        
+                        <div id="hello-menu" class="menu-content">
+                            <div class="menu-category">
+                                <h4>Savoury</h4>
+                                <div id="savoury-items" class="menu-items collapsible">
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Brekkie greens</h5>
+                                        <p>hummus, zucchini, kale, broccoli, beans, quinoa, sesame, poached eggs, parmesan, crispy leeks, dukkah</p>
+                                        <div class="menu-note">GF VG Available</div>
+                                    </div>
+                                    <div class="menu-price">A$25.00</div>
+                                </div>
+                                
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Salmon tacos</h5>
+                                        <p>smashed avo, pickled red tomato, coco lime</p>
+                                    </div>
+                                    <div class="menu-price">A$27.00</div>
+                                </div>
+                                
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Brioche burger</h5>
+                                        <p>pork belly, pickled slaw, bacon, fried egg, jam, aioli, cheese, lettuce, onion rings, fries & house made secret sauce</p>
+                                    </div>
+                                    <div class="menu-price">A$29.00</div>
+                                </div>
+                                
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Reuben sandwich</h5>
+                                        <p>toasted rye, sauerkraut, pastrami, cheese & house made secret sauce, fries & chicken salt</p>
+                                    </div>
+                                    <div class="menu-price">A$28.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Baked gnocchi</h5>
+                                        <p>tomato sugo, pecorino, mozzarella, toasted sourdough</p>
+                                    </div>
+                                    <div class="menu-price">A$28.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <div class="menu-note">V/GF when available</div>
+                                    </div>
+                                    <div class="menu-price">A$0.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Corn & zucchini fritters</h5>
+                                        <p>mint yoghurt, tomato salsa, lime & coriander</p>
+                                    </div>
+                                    <div class="menu-price">A$25.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <div class="menu-note">GF/VG Available</div>
+                                    </div>
+                                    <div class="menu-price">A$0.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Hello neighbour big brekkie</h5>
+                                        <p>chargrilled sourdough, hash brown, tomatoes, kale, mushroom, eggs, house made tomato jam w/ Bacon & chipolatas or grilled haloumi and avo</p>
+                                    </div>
+                                    <div class="menu-price">A$29.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <div class="menu-note">V/GF Available</div>
+                                    </div>
+                                    <div class="menu-price">A$0.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Eggs benny</h5>
+                                        <p>poached eggs and hollandaise on toasted brioche bun</p>
+                                    </div>
+                                    <div class="menu-price">A$23.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Steamed bao buns</h5>
+                                        <p>pickled carrot, herbs, Sriracha mayo w/slow braised pork belly w/buttermilk fried chicken</p>
+                                    </div>
+                                    <div class="menu-price">A$28.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Ham, cheddar and tomato omelette</h5>
+                                        <p>toasted sourdough</p>
+                                    </div>
+                                    <div class="menu-price">A$25.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <div class="menu-note">GF Available</div>
+                                    </div>
+                                    <div class="menu-price">A$0.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Crispy egg white omelette</h5>
+                                        <p>chilli, ginger, Asian greens, pickled kohlrabi, bean salad</p>
+                                    </div>
+                                    <div class="menu-price">A$26.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <div class="menu-note">GF</div>
+                                    </div>
+                                    <div class="menu-price">A$0.00</div>
+                                </div>
+
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Ham</h5>
+                                    </div>
+                                    <div class="menu-price">A$25.00</div>
+                                </div>
+                            </div>
+                            <button id="savoury-toggle" class="show-more-btn">Show more</button>
+                        </div>
+                        
+                        <div class="reviews-section">
+                            <h3>What 490 people are saying</h3>
+                            <p class="reviews-subtitle">Hello Neighbour Artusi By Night reviews from people who've dined at this restaurant. Based on recent rating.</p>
+                            
+                            <div class="reviews-overview">
+                                <p class="reviews-note">Reviews can only be made by diners who have eaten at this restaurant</p>
+                                
+                                <div class="rating-display">
+                                    <div class="stars">★★★★★</div>
+                                    <span class="rating-text">4.7 based on recent ratings</span>
+                                </div>
+                                
+                                <div class="rating-distribution">
+                                    <div class="rating-bar">
+                                        <span class="rating-number">5</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 75%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span class="rating-number">4</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 20%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span class="rating-number">3</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 4%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span class="rating-number">2</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 1%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span class="rating-number">1</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 0%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="category-ratings">
+                                    <div class="category-box">
+                                        <div class="category-score">4.7</div>
+                                        <div class="category-name">Food</div>
+                                    </div>
+                                    <div class="category-box">
+                                        <div class="category-score">4.7</div>
+                                        <div class="category-name">Service</div>
+                                    </div>
+                                    <div class="category-box">
+                                        <div class="category-score">4.7</div>
+                                        <div class="category-name">Ambience</div>
+                                    </div>
+                                    <div class="category-box">
+                                        <div class="category-score">4.5</div>
+                                        <div class="category-name">Value</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="noise-level">
+                                    <span class="noise-icon">📊</span>
+                                    <span>Noise • Energetic</span>
+                                </div>
+                            </div>
+                            
+                            <div class="loved-for-section">
+                                <h4>Loved For <span class="info-icon">ℹ️</span></h4>
+                                <div class="loved-chips">
+                                    <div class="chip-scroll">
+                                        <div class="loved-chip">❤️ Adelaide Great for brunch</div>
+                                        <div class="loved-chip">❤️ Adelaide Good for business meals</div>
+                                        <div class="loved-chip">❤️ Adelaide Kid-friendly</div>
+                                        <div class="loved-chip">❤️ Adelaide Gluten-free</div>
+                                        <div class="loved-chip">❤️ Adelaide Romantic</div>
+                                        <div class="loved-chip">❤️ Adelaide Outdoor dining</div>
+                                    </div>
+                                    <button class="scroll-arrow left">‹</button>
+                                    <button class="scroll-arrow right">›</button>
+                                </div>
+                            </div>
+                            
+                            <div class="review-summary">
+                                <h4>Review summary <span class="ai-icon">✨</span></h4>
+                                <p class="ai-note">AI-generated from verified diner reviews</p>
+                                <div class="summary-text">
+                                    Hello Neighbour Artusi By Night offers "delicious and fresh" meals with an "interesting menu" featuring standout dishes like house-made gnocchi. The service is "excellent," and the atmosphere is welcoming and friendly. It's a "highly recommended" spot for any occasion, with attentive staff ensuring a memorable dining experience.
+                                </div>
+                            </div>
+                            
+                            <div class="search-reviews">
+                                <div class="search-container">
+                                    <span class="search-icon">🔍</span>
+                                    <input type="text" placeholder="Search all reviews" class="search-input">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div id="artusi-menu" class="menu-content" style="display: none;">
+                            <div class="menu-category">
+                                <h4>Piatti</h4>
+                                <div class="menu-items">
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Marinated Sicilian olives</h5>
+                                        </div>
+                                        <div class="menu-price">A$9.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Focaccia, oil, chilli</h5>
+                                        </div>
+                                        <div class="menu-price">A$10.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Focaccia, caponata</h5>
+                                        </div>
+                                        <div class="menu-price">A$16.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Crispy whitebait, paprika, lemon, kewpie</h5>
+                                        </div>
+                                        <div class="menu-price">A$12.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Garlic parsley butter pizzetta, parmesan</h5>
+                                        </div>
+                                        <div class="menu-price">A$14.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Potato skins, kewpie</h5>
+                                        </div>
+                                        <div class="menu-price">A$14.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Calamari e zucchini fritti, lemon, kewpie</h5>
+                                        </div>
+                                        <div class="menu-price">A$20.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Anchovy toast, charred zucchini, dill crème fraîche, pangrattato, lemon</h5>
+                                        </div>
+                                        <div class="menu-price">A$18.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Polenta chips, gorgonzola spinach sauce</h5>
+                                        </div>
+                                        <div class="menu-price">A$18.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Burrata, rockmelon, hot honey, crostini</h5>
+                                        </div>
+                                        <div class="menu-price">A$26.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Pickled cucumber, stracciatella, basil oil, nigella, crostini</h5>
+                                        </div>
+                                        <div class="menu-price">A$24.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Potato croquettes, pecorino, parsley, napolitana</h5>
+                                        </div>
+                                        <div class="menu-price">A$18.00</div>
+                                    </div>
+                                    
+                                    <div class="menu-item">
+                                        <div class="menu-item-info">
+                                            <h5>Prosciutto crostini, whipped ricotta, hot honey</h5>
+                                        </div>
+                                        <div class="menu-price">A$18.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <div id="photos" class="tab-panel" style="display: none;">
+                    <div class="photos-section">
+                        <h3>116 Photos</h3>
+                        <p class="photos-subtitle">Explore Hello Neighbour Artusi By Night's photos.</p>
+                        <div class="photos-grid">
+                            <div class="photo-item large">
+                                <div class="photo-placeholder neon">Hello Neighbour</div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder interior"></div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder dining"></div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder food"></div>
+                            </div>
+                            <div class="photo-item more">
+                                <div class="photo-placeholder more-overlay">+111 More</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu" class="tab-panel" style="display: none;">
+                    <div class="menu-section">
+                        <h3>Menu</h3>
+                        <p class="menu-subtitle">Hello Neighbour Artusi By Night's menu.</p>
+                        <div class="menu-tabs">
+                            <button class="menu-tab active">Hello Neighbour Menu</button>
+                            <button class="menu-tab">Artusi By Night Menu</button>
+                        </div>
+                        
+                        <div class="menu-category">
+                            <h4>Savoury</h4>
+                            <div class="menu-items">
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Brekkie greens</h5>
+                                        <p>hummus, zucchini, kale, broccoli, beans, quinoa, sesame, poached eggs, parmesan, crispy leeks, dukkah</p>
+                                        <div class="menu-note">GF VG Available</div>
+                                    </div>
+                                    <div class="menu-price">A$25.00</div>
+                                </div>
+                                
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Salmon tacos</h5>
+                                        <p>smashed avo, pickled red tomato, coco lime</p>
+                                    </div>
+                                    <div class="menu-price">A$27.00</div>
+                                </div>
+                                
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Brioche burger</h5>
+                                        <p>pork belly, pickled slaw, bacon, fried egg, jam, aioli, cheese, lettuce, onion rings, fries & house made secret sauce</p>
+                                    </div>
+                                    <div class="menu-price">A$29.00</div>
+                                </div>
+                                
+                                <div class="menu-item">
+                                    <div class="menu-item-info">
+                                        <h5>Reuben sandwich</h5>
+                                        <p>toasted rye, sauerkraut, pastrami, cheese & house made secret sauce, fries & chicken salt</p>
+                                    </div>
+                                    <div class="menu-price">A$28.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-section">
+                        <h3>What 490 people are saying</h3>
+                        <p class="reviews-subtitle">Hello Neighbour Artusi By Night reviews from people who've dined at this restaurant. Based on recent rating.</p>
+                        
+                        <div class="reviews-overview">
+                            <p class="reviews-note">Reviews can only be made by diners who have eaten at this restaurant</p>
+                            
+                            <div class="rating-display">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.7 based on recent ratings</span>
+                            </div>
+                            
+                            <div class="rating-distribution">
+                                <div class="rating-bar">
+                                    <span class="rating-number">5</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">4</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 20%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">3</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 4%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">2</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 1%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">1</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="category-ratings">
+                                <div class="category-box">
+                                    <div class="category-score">4.7</div>
+                                    <div class="category-name">Food</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-score">4.7</div>
+                                    <div class="category-name">Service</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-score">4.7</div>
+                                    <div class="category-name">Ambience</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-score">4.5</div>
+                                    <div class="category-name">Value</div>
+                                </div>
+                            </div>
+                            
+                            <div class="noise-level">
+                                <span class="noise-icon">📊</span>
+                                <span>Noise • Energetic</span>
+                            </div>
+                        </div>
+                        
+                        <div class="loved-for-section">
+                            <h4>Loved For <span class="info-icon">ℹ️</span></h4>
+                            <div class="loved-chips">
+                                <div class="chip-scroll">
+                                    <div class="loved-chip">❤️ Adelaide Great for brunch</div>
+                                    <div class="loved-chip">❤️ Adelaide Good for business meals</div>
+                                    <div class="loved-chip">❤️ Adelaide Kid-friendly</div>
+                                    <div class="loved-chip">❤️ Adelaide Gluten-free</div>
+                                    <div class="loved-chip">❤️ Adelaide Romantic</div>
+                                    <div class="loved-chip">❤️ Adelaide Outdoor dining</div>
+                                </div>
+                                <button class="scroll-arrow left">‹</button>
+                                <button class="scroll-arrow right">›</button>
+                            </div>
+                        </div>
+                        
+                        <div class="review-summary">
+                            <h4>Review summary <span class="ai-icon">✨</span></h4>
+                            <p class="ai-note">AI-generated from verified diner reviews</p>
+                            <div class="summary-text">
+                                Hello Neighbour Artusi By Night offers "delicious and fresh" meals with an "interesting menu" featuring standout dishes like house-made gnocchi. The service is "excellent," and the atmosphere is welcoming and friendly. It's a "highly recommended" spot for any occasion, with attentive staff ensuring a memorable dining experience.
+                            </div>
+                        </div>
+                        
+                        <div class="search-reviews">
+                            <div class="search-container">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" placeholder="Search all reviews" class="search-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reviews" class="tab-panel" style="display: none;">
+                    <div class="reviews-section">
+                        <h3>What 490 people are saying</h3>
+                        <p class="reviews-subtitle">Hello Neighbour Artusi By Night reviews from people who've dined at this restaurant. Based on recent rating.</p>
+                        
+                        <div class="reviews-overview">
+                            <p class="reviews-note">Reviews can only be made by diners who have eaten at this restaurant</p>
+                            
+                            <div class="rating-display">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.7 based on recent ratings</span>
+                            </div>
+                            
+                            <div class="rating-distribution">
+                                <div class="rating-bar">
+                                    <span class="rating-number">5</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">4</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 20%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">3</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 4%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">2</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 1%;"></div>
+                                    </div>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-number">1</span>
+                                    <div class="bar-container">
+                                        <div class="bar-fill" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="category-ratings">
+                                <div class="category-box">
+                                    <div class="category-score">4.7</div>
+                                    <div class="category-name">Food</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-score">4.7</div>
+                                    <div class="category-name">Service</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-score">4.7</div>
+                                    <div class="category-name">Ambience</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-score">4.5</div>
+                                    <div class="category-name">Value</div>
+                                </div>
+                            </div>
+                            
+                            <div class="noise-level">
+                                <span class="noise-icon">📊</span>
+                                <span>Noise • Energetic</span>
+                            </div>
+                        </div>
+                        
+                        <div class="loved-for-section">
+                            <h4>Loved For <span class="info-icon">ℹ️</span></h4>
+                            <div class="loved-chips">
+                                <div class="chip-scroll">
+                                    <div class="loved-chip">❤️ Adelaide Great for brunch</div>
+                                    <div class="loved-chip">❤️ Adelaide Good for business meals</div>
+                                    <div class="loved-chip">❤️ Adelaide Kid-friendly</div>
+                                    <div class="loved-chip">❤️ Adelaide Gluten-free</div>
+                                    <div class="loved-chip">❤️ Adelaide Romantic</div>
+                                    <div class="loved-chip">❤️ Adelaide Outdoor dining</div>
+                                </div>
+                                <button class="scroll-arrow left">‹</button>
+                                <button class="scroll-arrow right">›</button>
+                            </div>
+                        </div>
+                        
+                        <div class="review-summary">
+                            <h4>Review summary <span class="ai-icon">✨</span></h4>
+                            <p class="ai-note">AI-generated from verified diner reviews</p>
+                            <div class="summary-text">
+                                Hello Neighbour Artusi By Night offers "delicious and fresh" meals with an "interesting menu" featuring standout dishes like house-made gnocchi. The service is "excellent," and the atmosphere is welcoming and friendly. It's a "highly recommended" spot for any occasion, with attentive staff ensuring a memorable dining experience.
+                            </div>
+                        </div>
+                        
+                        <div class="search-reviews">
+                            <div class="search-container">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" placeholder="Search all reviews" class="search-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-panel">
+            <h2 class="booking-title">Make a reservation</h2>
+
+            <div class="input-stack">
+                <button class="input-btn">
+                    <span class="left">👥 <span>2 people</span></span>
+                    <span class="chevron">▾</span>
+                </button>
+                <div class="input-grid">
+                    <button id="btn-date" class="input-btn" type="button" style="position:relative;">
+                        <span class="left">📅 <span id="btn-date-label">Select date</span></span>
+                        <span class="chevron">▾</span>
+                    </button>
+                    <button id="btn-time" class="input-btn" type="button" style="position:relative;">
+                        <span class="left">🕙 <span id="btn-time-label">Select time</span></span>
+                        <span class="chevron">▾</span>
+                    </button>
+                </div>
+                <input id="res-date" class="native-picker" type="date" />
+                <input id="res-time" class="native-picker" type="time" step="900" />
+                <!-- custom dropdown containers -->
+                <div id="calendar-panel" class="dropdown-panel" style="display:none;"></div>
+                <div id="time-panel" class="dropdown-panel time-panel" style="display:none;"></div>
+            </div>
+
+            <div class="info-alert" style="margin-top:12px;">
+                <span class="dot">•</span>
+                <span>At the moment, there’s no online availability within 2.5 hours of 10:00 PM.</span>
+            </div>
+
+            <button class="primary-outline-btn" style="margin-top:10px;">Show next available</button>
+
+            <div class="form-group" style="margin-top:16px;">
+                <label class="form-label">Select a time</label>
+                <div class="time-slots">
+                    <button class="time-slot selected">6:30 PM*</button>
+                    <button class="time-slot">6:45 PM*</button>
+                    <button class="time-slot">7:00 PM*</button>
+                    <button class="time-slot">7:15 PM*</button>
+                    <button class="time-slot">7:30 PM*</button>
+                    <button class="notify-btn">🔔 Notify me</button>
+                </div>
+            </div>
+
+            <div class="booking-info">
+                🔄 Booked 18 times today
+            </div>
+
+            <div class="additional-options">
+                🪑 Additional seating options
+            </div>
+
+            <div class="map-card">
+                <iframe class="map-embed" src="https://www.google.com/maps?q=150%20King%20William%20Rd,%20Hyde%20Park,%20SA%205061&output=embed" loading="lazy"></iframe>
+                <div class="address-row">
+                    🗺️ <span class="addr">150 King William Rd, Hyde Park, AU-SA 5061</span>
+                </div>
+            </div>
+
+            <div class="section-title">Dining areas</div>
+            <div class="chips">
+                <span class="chip">High Top</span>
+                <span class="chip">Veranda</span>
+                <span class="chip">Street Dining</span>
+                <span class="chip">Inside</span>
+            </div>
+            <a class="view-more" href="#">View more</a>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // If photos, menu, or reviews tab is clicked, show overview tab and scroll to corresponding section
+            if (tabName === 'photos' || tabName === 'menu' || tabName === 'reviews') {
+                // Hide all tab panels
+                const panels = document.querySelectorAll('.tab-panel');
+                panels.forEach(panel => panel.style.display = 'none');
+                
+                // Show overview panel
+                document.getElementById('overview').style.display = 'block';
+                
+                // Update tab active state to overview
+                const tabs = document.querySelectorAll('.nav-tab');
+                tabs.forEach(tab => tab.classList.remove('active'));
+                document.querySelector('.nav-tab[onclick="showTab(\'overview\')"]').classList.add('active');
+                
+                // Scroll to the corresponding section in overview
+                let targetSection;
+                if (tabName === 'photos') {
+                    targetSection = document.querySelector('.photos-section');
+                } else if (tabName === 'menu') {
+                    targetSection = document.querySelector('.menu-section');
+                } else if (tabName === 'reviews') {
+                    targetSection = document.querySelector('.reviews-section');
+                }
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+                return;
+            }
+            
+            // For other tabs (overview, reviews, details), show the panel directly
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.style.display = 'none');
+            
+            // Show selected panel
+            document.getElementById(tabName).style.display = 'block';
+            
+            // Update tab active state
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+                    // Time slot selection
+            document.addEventListener('DOMContentLoaded', function() {
+                const timeSlots = document.querySelectorAll('.time-slot');
+                timeSlots.forEach(slot => {
+                    slot.addEventListener('click', function() {
+                        // Remove selected class from all slots
+                        timeSlots.forEach(s => s.classList.remove('selected'));
+                        // Add selected class to clicked slot
+                        this.classList.add('selected');
+                    });
+                });
+
+                            // Notify me button
+            document.querySelector('.notify-btn').addEventListener('click', function() {
+                alert('Notification preferences will be set up...');
+            });
+
+            // Loved For scroll arrows
+            const scrollLeft = document.querySelector('.scroll-arrow.left');
+            const scrollRight = document.querySelector('.scroll-arrow.right');
+            const chipScroll = document.querySelector('.chip-scroll');
+            
+            if (scrollLeft && scrollRight && chipScroll) {
+                scrollLeft.addEventListener('click', () => {
+                    chipScroll.scrollBy({ left: -200, behavior: 'smooth' });
+                });
+                scrollRight.addEventListener('click', () => {
+                    chipScroll.scrollBy({ left: 200, behavior: 'smooth' });
+                });
+            }
+
+            // Removed concierge interactions
+
+            // Save restaurant button
+            document.querySelector('.save-btn').addEventListener('click', function() {
+                if (this.textContent.includes('Save')) {
+                    this.textContent = '✅ Saved';
+                    this.style.background = '#d4edda';
+                } else {
+                    this.textContent = '💾 Save this restaurant';
+                    this.style.background = 'white';
+                }
+            });
+
+            // Photo count click
+            document.querySelector('.photo-count').addEventListener('click', function() {
+                alert('Opening photo gallery...');
+            });
+
+            // Menu tab switching
+            const menuTabs = document.querySelectorAll('.menu-tab');
+            const helloMenu = document.getElementById('hello-menu');
+            const artusiMenu = document.getElementById('artusi-menu');
+            
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    menuTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const menuType = this.getAttribute('data-menu');
+                    if (menuType === 'hello') {
+                        helloMenu.style.display = 'block';
+                        artusiMenu.style.display = 'none';
+                    } else if (menuType === 'artusi') {
+                        helloMenu.style.display = 'none';
+                        artusiMenu.style.display = 'block';
+                    }
+                });
+            });
+
+            // Savoury show more/less
+            const savouryItems = document.getElementById('savoury-items');
+            const savouryToggle = document.getElementById('savoury-toggle');
+            if (savouryItems && savouryToggle) {
+                function updateToggleLabel() {
+                    const expanded = savouryItems.classList.contains('expanded');
+                    savouryToggle.textContent = expanded ? 'Collapse menu' : 'View full menu';
+                }
+                updateToggleLabel();
+                savouryToggle.addEventListener('click', function() {
+                    savouryItems.classList.toggle('expanded');
+                    updateToggleLabel();
+                });
+            }
+
+            // Photo gallery interactions
+            const photoItems = document.querySelectorAll('.photo-item');
+            photoItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (this.classList.contains('more')) {
+                        alert('Opening full photo gallery with 116 photos...');
+                    } else {
+                        alert('Opening photo viewer...');
+                    }
+                });
+            });
+
+            // Date & time pickers for reservation
+            const resDate = document.getElementById('res-date');
+            const resTime = document.getElementById('res-time');
+            const btnDate = document.getElementById('btn-date');
+            const btnTime = document.getElementById('btn-time');
+            const lblDate = document.getElementById('btn-date-label');
+            const lblTime = document.getElementById('btn-time-label');
+            const calPanel = document.getElementById('calendar-panel');
+            const timePanel = document.getElementById('time-panel');
+
+            function formatDateLabel(yyyyMmDd) {
+                const d = new Date(yyyyMmDd + 'T00:00:00');
+                return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+            }
+
+            function formatTimeLabel(hhmm) {
+                const [hStr, mStr] = hhmm.split(':');
+                let h = parseInt(hStr, 10);
+                const m = mStr;
+                const ampm = h >= 12 ? 'PM' : 'AM';
+                h = h % 12; if (h === 0) h = 12;
+                return `${h}:${m} ${ampm}`;
+            }
+
+            // Initialize with current date and nearest 15 minutes
+            const now = new Date();
+            const today = now.toISOString().split('T')[0];
+            const minutes = now.getMinutes();
+            const roundedMinutes = Math.round(minutes / 15) * 15;
+            now.setMinutes(roundedMinutes, 0, 0);
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mm = String(now.getMinutes()).padStart(2, '0');
+            const hhmm = `${hh}:${mm}`;
+
+            resDate.value = today;
+            resTime.value = hhmm;
+            lblDate.textContent = formatDateLabel(today);
+            lblTime.textContent = formatTimeLabel(hhmm);
+
+            // Open native pickers on button click
+            function togglePanel(panel, anchor) {
+                const rect = anchor.getBoundingClientRect();
+                panel.style.top = (rect.bottom + 6) + 'px';
+                panel.style.left = rect.left + 'px';
+                const visible = panel.style.display !== 'none';
+                calPanel.style.display = 'none';
+                timePanel.style.display = 'none';
+                panel.style.display = visible ? 'none' : 'block';
+            }
+
+            // Build calendar UI
+            function getMonthMatrix(year, monthIndex) {
+                const firstDay = new Date(year, monthIndex, 1);
+                const startDay = new Date(firstDay);
+                startDay.setDate(firstDay.getDate() - ((firstDay.getDay() + 6) % 7)); // Monday-first
+                const cells = [];
+                for (let i = 0; i < 42; i++) {
+                    const d = new Date(startDay);
+                    d.setDate(startDay.getDate() + i);
+                    cells.push(d);
+                }
+                return cells;
+            }
+
+            let calYear = now.getFullYear();
+            let calMonth = now.getMonth();
+
+            function renderCalendar() {
+                const cells = getMonthMatrix(calYear, calMonth);
+                const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+                const todayStr = new Date().toISOString().split('T')[0];
+                const selectedStr = resDate.value;
+
+                calPanel.innerHTML = `
+                    <div class="calendar">
+                        <div class="cal-header">
+                            <button class="icon-btn" id="cal-prev">‹</button>
+                            <div>${monthLabel}</div>
+                            <button class="icon-btn" id="cal-next">›</button>
+                        </div>
+                        <div class="cal-week"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+                        <div class="cal-grid">
+                            ${cells.map(d => {
+                                const iso = d.toISOString().split('T')[0];
+                                const isOther = d.getMonth() !== calMonth;
+                                const isToday = iso === todayStr;
+                                const isSelected = iso === selectedStr;
+                                return `<div class="cal-cell ${isOther ? 'is-other' : ''} ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}" data-date="${iso}">${d.getDate()}</div>`;
+                            }).join('')}
+                        </div>
+                    </div>`;
+
+                calPanel.querySelector('#cal-prev').addEventListener('click', () => {
+                    if (calMonth === 0) { calMonth = 11; calYear--; } else { calMonth--; }
+                    renderCalendar();
+                });
+                calPanel.querySelector('#cal-next').addEventListener('click', () => {
+                    if (calMonth === 11) { calMonth = 0; calYear++; } else { calMonth++; }
+                    renderCalendar();
+                });
+                calPanel.querySelectorAll('.cal-cell').forEach(cell => {
+                    cell.addEventListener('click', () => {
+                        const val = cell.getAttribute('data-date');
+                        resDate.value = val;
+                        lblDate.textContent = formatDateLabel(val);
+                        calPanel.style.display = 'none';
+                    });
+                });
+            }
+
+            function renderTimeOptions() {
+                const openHour = 7;  // 7:00
+                const closeHour = 22; // 10:00 PM
+                const stepMin = 15;
+                const options = [];
+                for (let h = openHour; h <= closeHour; h++) {
+                    for (let m = 0; m < 60; m += stepMin) {
+                        const hh = String(h).padStart(2, '0');
+                        const mm = String(m).padStart(2, '0');
+                        options.push(`${hh}:${mm}`);
+                    }
+                }
+                timePanel.innerHTML = options.map(t => `<button class="time-option" data-time="${t}">${formatTimeLabel(t)}</button>`).join('');
+                timePanel.querySelectorAll('.time-option').forEach(opt => {
+                    opt.addEventListener('click', () => {
+                        const val = opt.getAttribute('data-time');
+                        resTime.value = val;
+                        lblTime.textContent = formatTimeLabel(val);
+                        timePanel.style.display = 'none';
+                    });
+                });
+            }
+
+            btnDate.addEventListener('click', (e) => {
+                e.stopPropagation();
+                renderCalendar();
+                togglePanel(calPanel, btnDate);
+            });
+            btnTime.addEventListener('click', (e) => {
+                e.stopPropagation();
+                renderTimeOptions();
+                togglePanel(timePanel, btnTime);
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!calPanel.contains(e.target) && !btnDate.contains(e.target)) calPanel.style.display = 'none';
+                if (!timePanel.contains(e.target) && !btnTime.contains(e.target)) timePanel.style.display = 'none';
+            });
+
+            // Reflect changes to labels (native fallback)
+            resDate.addEventListener('change', function() {
+                if (this.value) lblDate.textContent = formatDateLabel(this.value);
+            });
+            resTime.addEventListener('change', function() {
+                if (this.value) lblTime.textContent = formatTimeLabel(this.value);
+            });
+
+            // Ask question button
+            document.querySelector('.ask-question-btn').addEventListener('click', function() {
+                const question = prompt('What would you like to ask about this restaurant?');
+                if (question) {
+                    alert('Concierge: Thank you for your question! Let me help you with that...');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
