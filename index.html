@@ -874,6 +874,694 @@
             .menu-items { grid-template-columns: 1fr; }
             .menu-item { grid-template-columns: 1fr auto; }
         }
+
+        /* Customer Reviews Styling */
+        .customer-reviews {
+            margin-top: 40px;
+        }
+
+        .customer-reviews h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 24px;
+        }
+
+        .review-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 24px 0;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: brown;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .profile-icon.purple {
+            background: #805ad5;
+        }
+
+        .profile-icon.blue {
+            background: #3182ce;
+        }
+
+        .profile-icon.pink {
+            background: #e53e3e;
+        }
+
+        .profile-icon.green {
+            background: #38a169;
+        }
+
+        .profile-icon.orange {
+            background: #dd6b20;
+        }
+
+        .profile-icon.red {
+            background: #e53e3e;
+        }
+
+        .reviewer-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 16px;
+        }
+
+        .reviewer-location {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .dining-date {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .review-ratings {
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .overall-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .overall-rating .stars {
+            color: #da3743;
+            font-size: 16px;
+        }
+
+        .overall-rating .rating-text {
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .detailed-ratings {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .review-content {
+            margin-bottom: 16px;
+        }
+
+        .review-comment {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .review-photo {
+            margin-top: 12px;
+        }
+
+        .review-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid #e2e8f0;
+        }
+
+        .review-photos {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .review-photos .review-image {
+            width: 70px;
+            height: 70px;
+        }
+
+        .review-photos .review-image:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease;
+        }
+
+        /* Pagination Styling */
+        .reviews-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+            padding: 20px 0;
+        }
+
+        .page-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .page-number:hover {
+            background: #f7fafc;
+            border-color: #cbd5e0;
+        }
+
+        .page-number.active {
+            background: #da3743;
+            color: white;
+            border-color: #da3743;
+        }
+
+        .page-number.active:hover {
+            background: #c53030;
+        }
+
+        .page-ellipsis {
+            color: #666;
+            font-size: 14px;
+            padding: 0 4px;
+        }
+
+        .page-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .page-arrow:hover {
+            background: #f7fafc;
+            border-color: #cbd5e0;
+        }
+
+        /* Details Section Styling */
+        .details-section {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .details-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 24px;
+        }
+
+        .map-container {
+            margin-bottom: 32px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .details-map {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            display: block;
+        }
+
+        .dining-areas {
+            margin-bottom: 32px;
+        }
+
+        .dining-areas h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 16px;
+        }
+
+        .dining-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dining-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #374151;
+            transition: all 0.2s;
+        }
+
+        .dining-btn:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 16px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-icon {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .info-text {
+            color: #4a5568;
+            font-size: 15px;
+        }
+
+        /* FAQs Section Styling */
+        .faqs-section {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .faqs-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 24px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .faq-header h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            line-height: 1.4;
+            margin: 0;
+            flex: 1;
+            margin-right: 16px;
+        }
+
+        .faq-arrow {
+            font-size: 14px;
+            color: #666;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-arrow.active {
+            transform: rotate(180deg);
+            color: #da3743;
+        }
+
+        .faq-answer {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb-nav {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb-separator {
+            color: #cbd5e0;
+            margin: 0 4px;
+        }
+
+        .breadcrumb-nav span:not(.breadcrumb-separator) {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb-nav span:not(.breadcrumb-separator):hover {
+            color: #da3743;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 60px 0 40px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        /* Social Media Section */
+        .social-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 0;
+            border-top: 1px solid #4a5568;
+            border-bottom: 1px solid #4a5568;
+        }
+
+        .social-section h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #4a5568;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .social-icon:hover {
+            background: #da3743;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            text-align: center;
+        }
+
+        .legal-links {
+            margin-bottom: 20px;
+        }
+
+        .legal-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+
+        .legal-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-bottom: 15px;
+        }
+
+        .copyright p {
+            color: #a0aec0;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .partner-info {
+            margin-bottom: 25px;
+        }
+
+        .partner-info p {
+            color: #a0aec0;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: nowrap;
+        }
+
+        .logo-item {
+            margin: 0;
+        }
+
+        .logo-item img {
+            height: 20px;
+            width: auto;
+            max-width: 80px;
+            object-fit: contain;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 40px 0 30px;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 30px;
+            }
+
+            .footer-column h4 {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+
+            .footer-column ul li a {
+                font-size: 13px;
+            }
+
+            .social-icons {
+                gap: 10px;
+            }
+
+            .social-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .legal-links a {
+                display: block;
+                margin: 5px 0;
+                font-size: 12px;
+            }
+
+            .partner-logos {
+                gap: 15px;
+            }
+
+            .partner-logo {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+
+        .review-helpful {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .review-helpful:hover {
+            color: #da3743;
+        }
+
+        .helpful-icon {
+            font-size: 16px;
+        }
+
+        .read-more {
+            color: #da3743;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive design for reviews */
+        @media (max-width: 768px) {
+            .review-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .review-ratings {
+                text-align: left;
+                min-width: auto;
+            }
+
+            .reviewer-info {
+                gap: 8px;
+            }
+
+            .profile-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            /* Pagination responsive */
+            .reviews-pagination {
+                gap: 6px;
+            }
+
+            .page-number, .page-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 13px;
+            }
+
+            /* Details responsive */
+            .dining-buttons {
+                gap: 8px;
+            }
+
+            .dining-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+
+            .details-map {
+                height: 250px;
+            }
+
+            .contact-info {
+                gap: 12px;
+            }
+
+            .info-row {
+                gap: 8px;
+            }
+
+            .info-icon {
+                font-size: 16px;
+                width: 20px;
+            }
+
+            .info-text {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1192,7 +1880,289 @@
                                     <input type="text" placeholder="Search all reviews" class="search-input">
                                 </div>
                             </div>
+
+                            <!-- Individual Customer Reviews -->
+                            <div class="customer-reviews">
+                                <h4>Recent Reviews</h4>
+                                
+                                <!-- Leanne's Review -->
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="profile-icon purple">L</div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">Leanne</div>
+                                                <div class="reviewer-location">Adelaide - 2 reviews</div>
+                                                <div class="dining-date">Dined on June 11, 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-ratings">
+                                            <div class="overall-rating">
+                                                <span class="stars">★★★★★</span>
+                                                <span class="rating-text">Overall 5</span>
+                                            </div>
+                                            <div class="detailed-ratings">
+                                                <span>Food 5</span> • <span>Service 5</span> • <span>Ambience 5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p class="review-comment">Friendly Staff, Amazing Food, Excellent Wine/Cocktail selections, Great Service. <a href="#" class="read-more">Read more</a></p>
+                                    </div>
+                                    <div class="review-helpful">
+                                        <span class="helpful-icon">👍</span>
+                                        <span class="helpful-text">Is this helpful?</span>
+                                    </div>
+                                </div>
+
+                                <!-- Deanna's Review -->
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="profile-icon blue">D</div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">Deanna</div>
+                                                <div class="reviewer-location">WA - 1 review</div>
+                                                <div class="dining-date">Dined on June 7, 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-ratings">
+                                            <div class="overall-rating">
+                                                <span class="stars">★★★★★</span>
+                                                <span class="rating-text">Overall 5</span>
+                                            </div>
+                                            <div class="detailed-ratings">
+                                                <span>Food 5</span> • <span>Service 5</span> • <span>Ambience 5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p class="review-comment">Great place to eat on a rainy night. All food was divine, especially the house made gnocchi, and we ended up with leftovers for lunch the next day. Thank you Artusi for helping celebrate my partner's birthday!</p>
+                                        <div class="review-photos">
+                                            <img src="https://resizer.otstatic.com/v3/photos/32600168-3?width=70&height=70&webp=true" alt="Food photo 1" class="review-image">
+                                            <img src="https://resizer.otstatic.com/v3/photos/32600170-3?width=70&height=70&webp=true" alt="Food photo 2" class="review-image">
+                                        </div>
+                                    </div>
+                                    <div class="review-helpful">
+                                        <span class="helpful-icon">👍</span>
+                                        <span class="helpful-text">Is this helpful?</span>
+                                    </div>
+                                </div>
+
+                                <!-- Michael's Review -->
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="profile-icon green">M</div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">Michael</div>
+                                                <div class="reviewer-location">Melbourne - 5 reviews</div>
+                                                <div class="dining-date">Dined on June 5, 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-ratings">
+                                            <div class="overall-rating">
+                                                <span class="stars">★★★★☆</span>
+                                                <span class="rating-text">Overall 4</span>
+                                            </div>
+                                            <div class="detailed-ratings">
+                                                <span>Food 4</span> • <span>Service 5</span> • <span>Ambience 4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p class="review-comment">Great atmosphere and friendly service. The pasta was perfectly cooked and the wine selection was impressive. Will definitely return!</p>
+                                    </div>
+                                    <div class="review-helpful">
+                                        <span class="helpful-icon">👍</span>
+                                        <span class="helpful-text">Is this helpful?</span>
+                                    </div>
+                                </div>
+
+                                <!-- Sarah's Review -->
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="profile-icon orange">S</div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">Sarah</div>
+                                                <div class="reviewer-location">Sydney - 3 reviews</div>
+                                                <div class="dining-date">Dined on June 3, 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-ratings">
+                                            <div class="overall-rating">
+                                                <span class="stars">★★★★★</span>
+                                                <span class="rating-text">Overall 5</span>
+                                            </div>
+                                            <div class="detailed-ratings">
+                                                <span>Food 5</span> • <span>Service 5</span> • <span>Ambience 5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p class="review-comment">Absolutely loved the brunch here! The eggs benedict was perfect and the coffee was amazing. The outdoor seating area is beautiful.</p>
+                                        <div class="review-photos">
+                                            <img src="https://resizer.otstatic.com/v3/photos/32600169-3?width=70&height=70&webp=true" alt="Food photo" class="review-image">
+                                        </div>
+                                    </div>
+                                    <div class="review-helpful">
+                                        <span class="helpful-icon">👍</span>
+                                        <span class="helpful-text">Is this helpful?</span>
+                                    </div>
+                                </div>
+
+                                <!-- David's Review -->
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="profile-icon red">D</div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">David</div>
+                                                <div class="reviewer-location">Brisbane - 2 reviews</div>
+                                                <div class="dining-date">Dined on May 30, 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-ratings">
+                                            <div class="overall-rating">
+                                                <span class="stars">★★★★★</span>
+                                                <span class="rating-text">Overall 5</span>
+                                            </div>
+                                            <div class="detailed-ratings">
+                                                <span>Food 5</span> • <span>Service 4</span> • <span>Ambience 5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p class="review-comment">Excellent Italian cuisine! The gnocchi was homemade and delicious. The staff were very attentive and the wine pairing suggestions were spot on. <a href="#" class="read-more">Read more</a></p>
+                                    </div>
+                                    <div class="review-helpful">
+                                        <span class="helpful-icon">👍</span>
+                                        <span class="helpful-text">Is this helpful?</span>
+                                    </div>
+                                </div>
+
+                                <!-- Emma's Review -->
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="profile-icon pink">E</div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">Emma</div>
+                                                <div class="reviewer-location">Perth - 1 review</div>
+                                                <div class="dining-date">Dined on May 28, 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-ratings">
+                                            <div class="overall-rating">
+                                                <span class="stars">★★★★☆</span>
+                                                <span class="rating-text">Overall 4</span>
+                                            </div>
+                                            <div class="detailed-ratings">
+                                                <span>Food 4</span> • <span>Service 5</span> • <span>Ambience 4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p class="review-comment">Nice place for a date night. The food was good and the service was excellent. The atmosphere was romantic and cozy.</p>
+                                    </div>
+                                    <div class="review-helpful">
+                                        <span class="helpful-icon">👍</span>
+                                        <span class="helpful-text">Is this helpful?</span>
+                                    </div>
+                                </div>
+
+                                <!-- James's Review -->
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="profile-icon purple">J</div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">James</div>
+                                                <div class="reviewer-location">Adelaide - 8 reviews</div>
+                                                <div class="dining-date">Dined on May 25, 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-ratings">
+                                            <div class="overall-rating">
+                                                <span class="stars">★★★★★</span>
+                                                <span class="rating-text">Overall 5</span>
+                                            </div>
+                                            <div class="detailed-ratings">
+                                                <span>Food 5</span> • <span>Service 5</span> • <span>Ambience 5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p class="review-comment">Been coming here for years and it never disappoints. The quality is consistently excellent and the staff remember our preferences.</p>
+                                    </div>
+                                    <div class="review-helpful">
+                                        <span class="helpful-icon">👍</span>
+                                        <span class="helpful-text">Is this helpful?</span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+
+                        <!-- Pagination -->
+                        <div class="reviews-pagination">
+                            <div class="page-number active" data-page="1">1</div>
+                            <div class="page-number" data-page="2">2</div>
+                            <div class="page-number" data-page="3">3</div>
+                            <div class="page-ellipsis">—</div>
+                            <div class="page-number" data-page="49">49</div>
+                            <div class="page-arrow">></div>
+                        </div>
+
+                        <!-- FAQs Section -->
+                        <div class="faqs-section">
+                            <h3>FAQs</h3>
+                            
+                            <div class="faq-item">
+                                <div class="faq-header">
+                                    <h4>Does Hello Neighbour Artusi By Night offer delivery through OpenTable or takeout?</h4>
+                                    <span class="faq-arrow">▲</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Hello Neighbour Artusi By Night offers takeout which you can order by calling the restaurant at (08) 7089 5557.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-header">
+                                    <h4>How is Hello Neighbour Artusi By Night restaurant rated?</h4>
+                                    <span class="faq-arrow">▲</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Hello Neighbour Artusi By Night is rated 4.7 stars by 491 OpenTable diners.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-header">
+                                    <h4>Is Hello Neighbour Artusi By Night currently accepting reservations?</h4>
+                                    <span class="faq-arrow active">▲</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Yes, you can generally book this restaurant by choosing the date, time and party size on OpenTable.</p>
+                                </div>
+                            </div>
+
+                            <!-- Breadcrumb Navigation -->
+                            <div class="breadcrumb-nav">
+                                <span>Home</span>
+                                <span class="breadcrumb-separator">></span>
+                                <span>Australia</span>
+                                <span class="breadcrumb-separator">></span>
+                                <span>Adelaide</span>
+                                <span class="breadcrumb-separator">></span>
+                                <span>Central</span>
+                                <span class="breadcrumb-separator">></span>
+                                <span>Hyde Park</span>
+                            </div>
+                        </div>
+
                         </div>
 
                         <div id="artusi-menu" class="menu-content" style="display: none;">
@@ -1573,6 +2543,114 @@
                                 <input type="text" placeholder="Search all reviews" class="search-input">
                             </div>
                         </div>
+
+                        <!-- Individual Customer Reviews -->
+                        <div class="customer-reviews">
+                            <h4>Recent Reviews</h4>
+                            
+                            <!-- Leanne's Review -->
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="profile-icon purple">L</div>
+                                        <div class="reviewer-details">
+                                            <div class="reviewer-name">Leanne</div>
+                                            <div class="reviewer-location">Adelaide - 1 review</div>
+                                            <div class="dining-date">Dined on August 12, 2025</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-ratings">
+                                        <div class="overall-rating">
+                                            <span class="stars">★★★★☆</span>
+                                            <span class="rating-text">Overall 4</span>
+                                        </div>
+                                        <div class="detailed-ratings">
+                                            <span>Food 4</span> • <span>Service 5</span> • <span>Ambience 5</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    <p class="review-comment">Delicious and fresh lunch. Lots of great menu options. Coffees and juices excellent.</p>
+                                    <div class="review-photo">
+                                        <img src="https://resizer.otstatic.com/v3/photos/32600170-3?width=70&height=70&webp=true" alt="Food photo" class="review-image">
+                                    </div>
+                                </div>
+                                <div class="review-helpful">
+                                    <span class="helpful-icon">👍</span>
+                                    <span class="helpful-text">Is this helpful?</span>
+                                </div>
+                            </div>
+
+                            <!-- John's Review -->
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="profile-icon blue">J</div>
+                                        <div class="reviewer-details">
+                                            <div class="reviewer-name">John</div>
+                                            <div class="reviewer-location">Adelaide - 3 reviews</div>
+                                            <div class="dining-date">Dined on August 2, 2025</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-ratings">
+                                        <div class="overall-rating">
+                                            <span class="stars">★★★★★</span>
+                                            <span class="rating-text">Overall 5</span>
+                                        </div>
+                                        <div class="detailed-ratings">
+                                            <span>Food 5</span> • <span>Service 5</span> • <span>Ambience 5</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    <p class="review-comment">Always a great experience - food, service and ambience are excellent. Highly recommended.</p>
+                                </div>
+                                <div class="review-helpful">
+                                    <span class="helpful-icon">👍</span>
+                                    <span class="helpful-text">Is this helpful?</span>
+                                </div>
+                            </div>
+
+                            <!-- Anna's Review -->
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="profile-icon pink">A</div>
+                                        <div class="reviewer-details">
+                                            <div class="reviewer-name">Anna</div>
+                                            <div class="reviewer-location">Adelaide - 1 review</div>
+                                            <div class="dining-date">Dined on July 27, 2025</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-ratings">
+                                        <div class="overall-rating">
+                                            <span class="stars">★★★★★</span>
+                                            <span class="rating-text">Overall 5</span>
+                                        </div>
+                                        <div class="detailed-ratings">
+                                            <span>Food 5</span> • <span>Service 5</span> • <span>Ambience 5</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    <p class="review-comment">I haven't been to Hello Neighbour for a while and have missed it. I wasn't disappointed... the staff were lovely and welcoming, and the food and coffee was delicious... it was a great experience. I booked for a big group to go ther... <a href="#" class="read-more">Read more</a></p>
+                                </div>
+                                <div class="review-helpful">
+                                    <span class="helpful-icon">👍</span>
+                                    <span class="helpful-text">Is this helpful?</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination for Reviews Tab -->
+                        <div class="reviews-pagination">
+                            <div class="page-number active" data-page="1">1</div>
+                            <div class="page-number" data-page="2">2</div>
+                            <div class="page-number" data-page="3">3</div>
+                            <div class="page-ellipsis">—</div>
+                            <div class="page-number" data-page="49">49</div>
+                            <div class="page-arrow">></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1605,7 +2683,7 @@
 
             <div class="info-alert" style="margin-top:12px;">
                 <span class="dot">•</span>
-                <span>At the moment, there’s no online availability within 2.5 hours of 10:00 PM.</span>
+                <span>At the moment, there's no online availability within 2.5 hours of 10:00 PM.</span>
             </div>
 
             <button class="primary-outline-btn" style="margin-top:10px;">Show next available</button>
@@ -1647,6 +2725,155 @@
             <a class="view-more" href="#">View more</a>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Footer Links Columns -->
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>DISCOVER</h4>
+                    <ul>
+                        <li><a href="#">Dining Rewards</a></li>
+                        <li><a href="#">Private Dining</a></li>
+                        <li><a href="#">OpenTable Icons</a></li>
+                        <li><a href="#">Top 100 Restaurants</a></li>
+                        <li><a href="#">Reserve for Others</a></li>
+                        <li><a href="#">Restaurants Near Me</a></li>
+                        <li><a href="#">Restaurants Open Now</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>OPENTABLE</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>MORE</h4>
+                    <ul>
+                        <li><a href="#">OpenTable for iOS</a></li>
+                        <li><a href="#">OpenTable for Android</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>OUR SITES</h4>
+                    <ul>
+                        <li><a href="#">OpenTable.jp</a></li>
+                        <li><a href="#">OpenTable.de</a></li>
+                        <li><a href="#">OpenTable.es</a></li>
+                        <li><a href="#">OpenTable.ca</a></li>
+                        <li><a href="#">OpenTable.hk</a></li>
+                        <li><a href="#">OpenTable.ie</a></li>
+                        <li><a href="#">OpenTable.sg</a></li>
+                        <li><a href="#">OpenTable.nl</a></li>
+                        <li><a href="#">OpenTable.com.mx</a></li>
+                        <li><a href="#">OpenTable.co.uk</a></li>
+                        <li><a href="#">OpenTable.com.au</a></li>
+                        <li><a href="#">OpenTable.ae</a></li>
+                        <li><a href="#">OpenTable.co.th</a></li>
+                        <li><a href="#">OpenTable.it</a></li>
+                        <li><a href="#">OpenTable.com.tw</a></li>
+                        <li><a href="#">OpenTable.fr</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>BUSINESSES</h4>
+                    <ul>
+                        <li><a href="#">Restaurant Management Solutions</a></li>
+                        <li><a href="#">Restaurant Reservation Software</a></li>
+                        <li><a href="#">Restaurant Marketing Software</a></li>
+                        <li><a href="#">Restaurant Event Software</a></li>
+                        <li><a href="#">OpenTable For Restaurants</a></li>
+                        <li><a href="#">OpenTable For Restaurant Groups</a></li>
+                        <li><a href="#">Restaurant Resources</a></li>
+                        <li><a href="#">OpenTable Pricing & Plans</a></li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 30px;">JOIN US ON</h4>
+                    <div class="social-icons" style="justify-content: flex-start; margin-top: 15px; gap: 16px;">
+                        <a href="#" class="social-icon" style="width: 48px; height: 48px;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" style="width: 48px; height: 48px;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" style="width: 48px; height: 48px;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" style="width: 48px; height: 48px;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" style="width: 48px; height: 48px;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" style="width: 48px; height: 48px;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal and Partner Information -->
+            <div class="footer-bottom">
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Cookies and Interest-Based Ads</a>
+                    <a href="#">Do Not Sell or Share My Personal Information</a>
+                    <a href="#">Accessibility Statement</a>
+                    <a href="#">Cookie Preferences</a>
+                </div>
+                
+                <div class="copyright">
+                    <p>Copyright © 2025 OpenTable, Inc. 1 Montgomery St Ste 500, San Francisco CA 94104 - All rights reserved.</p>
+                </div>
+                
+                <div class="partner-info">
+                    <p>OpenTable is part of Booking Holdings, the world leader in online travel and related services.</p>
+                </div>
+                
+                <div class="partner-logos">
+                    <div class="logo-item">
+                            <img src="https://www.opentable.com/static/cfe/14/images/booking_logo@2x-RNKBII7E.png" alt="">
+                    </div>
+                    <div class="logo-item">
+                       <img src="https://www.opentable.com/static/cfe/14/images/priceline_logo@2x-Z4DO3CWJ.png" alt="">
+                    </div>
+                    <div class="logo-item">
+                        <img src="https://www.opentable.com/static/cfe/14/images/kayak_logo@2x-XRSNX6GX.png" alt="">
+                    </div>
+                    <div class="logo-item">
+                        <img src="https://www.opentable.com/static/cfe/14/images/agoda_logo@2x-UEDHQPYB.png" alt="">
+                    </div>
+                    <div class="logo-item">
+                       <img src="https://www.opentable.com/static/cfe/14/images/opentable@2x-O6CFCBOM.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         function showTab(tabName) {
@@ -1709,12 +2936,15 @@
                     });
                 });
 
-                            // Notify me button
-            document.querySelector('.notify-btn').addEventListener('click', function() {
-                alert('Notification preferences will be set up...');
-            });
+                            // Notify me button (only if element exists)
+            const notifyBtn = document.querySelector('.notify-btn');
+            if (notifyBtn) {
+                notifyBtn.addEventListener('click', function() {
+                    alert('Notification preferences will be set up...');
+                });
+            }
 
-            // Loved For scroll arrows
+            // Loved For scroll arrows (only if elements exist)
             const scrollLeft = document.querySelector('.scroll-arrow.left');
             const scrollRight = document.querySelector('.scroll-arrow.right');
             const chipScroll = document.querySelector('.chip-scroll');
@@ -1730,44 +2960,52 @@
 
             // Removed concierge interactions
 
-            // Save restaurant button
-            document.querySelector('.save-btn').addEventListener('click', function() {
-                if (this.textContent.includes('Save')) {
-                    this.textContent = '✅ Saved';
-                    this.style.background = '#d4edda';
-                } else {
-                    this.textContent = '💾 Save this restaurant';
-                    this.style.background = 'white';
-                }
-            });
+            // Save restaurant button (only if element exists)
+            const saveBtn = document.querySelector('.save-btn');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', function() {
+                    if (this.textContent.includes('Save')) {
+                        this.textContent = '✅ Saved';
+                        this.style.background = '#d4edda';
+                    } else {
+                        this.textContent = '💾 Save this restaurant';
+                        this.style.background = 'white';
+                    }
+                });
+            }
 
-            // Photo count click
-            document.querySelector('.photo-count').addEventListener('click', function() {
-                alert('Opening photo gallery...');
-            });
+            // Photo count click (only if element exists)
+            const photoCount = document.querySelector('.photo-count');
+            if (photoCount) {
+                photoCount.addEventListener('click', function() {
+                    alert('Opening photo gallery...');
+                });
+            }
 
-            // Menu tab switching
+            // Menu tab switching (only if elements exist)
             const menuTabs = document.querySelectorAll('.menu-tab');
             const helloMenu = document.getElementById('hello-menu');
             const artusiMenu = document.getElementById('artusi-menu');
             
-            menuTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    menuTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const menuType = this.getAttribute('data-menu');
-                    if (menuType === 'hello') {
-                        helloMenu.style.display = 'block';
-                        artusiMenu.style.display = 'none';
-                    } else if (menuType === 'artusi') {
-                        helloMenu.style.display = 'none';
-                        artusiMenu.style.display = 'block';
-                    }
+            if (menuTabs.length > 0 && helloMenu && artusiMenu) {
+                menuTabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        menuTabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        const menuType = this.getAttribute('data-menu');
+                        if (menuType === 'hello') {
+                            helloMenu.style.display = 'block';
+                            artusiMenu.style.display = 'none';
+                        } else if (menuType === 'artusi') {
+                            helloMenu.style.display = 'none';
+                            artusiMenu.style.display = 'block';
+                        }
+                    });
                 });
-            });
+            }
 
-            // Savoury show more/less
+            // Savoury show more/less (only if elements exist)
             const savouryItems = document.getElementById('savoury-items');
             const savouryToggle = document.getElementById('savoury-toggle');
             if (savouryItems && savouryToggle) {
@@ -1782,17 +3020,19 @@
                 });
             }
 
-            // Photo gallery interactions
+            // Photo gallery interactions (only if elements exist)
             const photoItems = document.querySelectorAll('.photo-item');
-            photoItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    if (this.classList.contains('more')) {
-                        alert('Opening full photo gallery with 116 photos...');
-                    } else {
-                        alert('Opening photo viewer...');
-                    }
+            if (photoItems.length > 0) {
+                photoItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        if (this.classList.contains('more')) {
+                            alert('Opening full photo gallery with 116 photos...');
+                        } else {
+                            alert('Opening photo viewer...');
+                        }
+                    });
                 });
-            });
+            }
 
             // Date & time pickers for reservation
             const resDate = document.getElementById('res-date');
@@ -1952,12 +3192,436 @@
                 if (this.value) lblTime.textContent = formatTimeLabel(this.value);
             });
 
-            // Ask question button
-            document.querySelector('.ask-question-btn').addEventListener('click', function() {
-                const question = prompt('What would you like to ask about this restaurant?');
-                if (question) {
-                    alert('Concierge: Thank you for your question! Let me help you with that...');
+            // Ask question button (only if element exists)
+            const askQuestionBtn = document.querySelector('.ask-question-btn');
+            if (askQuestionBtn) {
+                askQuestionBtn.addEventListener('click', function() {
+                    const question = prompt('What would you like to ask about this restaurant?');
+                    if (question) {
+                        alert('Concierge: Thank you for your question! Let me help you with that...');
+                    }
+                });
+            }
+
+            // Pagination functionality
+            const reviewsData = {
+                1: [
+                    {
+                        name: 'Leanne',
+                        location: 'Adelaide - 2 reviews',
+                        date: 'Dined on June 11, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Friendly Staff, Amazing Food, Excellent Wine/Cocktail selections, Great Service.',
+                        hasReadMore: true,
+                        photos: []
+                    },
+                    {
+                        name: 'Deanna',
+                        location: 'WA - 1 review',
+                        date: 'Dined on June 7, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Great place to eat on a rainy night. All food was divine, especially the house made gnocchi, and we ended up with leftovers for lunch the next day. Thank you Artusi for helping celebrate my partner\'s birthday!',
+                        hasReadMore: false,
+                        photos: [
+                            'https://resizer.otstatic.com/v3/photos/32600168-3?width=70&height=70&webp=true',
+                            'https://resizer.otstatic.com/v3/photos/32600170-3?width=70&height=70&webp=true'
+                        ]
+                    },
+                    {
+                        name: 'Michael',
+                        location: 'Melbourne - 5 reviews',
+                        date: 'Dined on June 5, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 5,
+                        ambience: 4,
+                        comment: 'Great atmosphere and friendly service. The pasta was perfectly cooked and the wine selection was impressive. Will definitely return!',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Sarah',
+                        location: 'Sydney - 3 reviews',
+                        date: 'Dined on June 3, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Absolutely loved the brunch here! The eggs benedict was perfect and the coffee was amazing. The outdoor seating area is beautiful.',
+                        hasReadMore: false,
+                        photos: [
+                            'https://resizer.otstatic.com/v3/photos/32600169-3?width=70&height=70&webp=true'
+                        ]
+                    },
+                    {
+                        name: 'David',
+                        location: 'Brisbane - 2 reviews',
+                        date: 'Dined on May 30, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 4,
+                        ambience: 5,
+                        comment: 'Excellent Italian cuisine! The gnocchi was homemade and delicious. The staff were very attentive and the wine pairing suggestions were spot on.',
+                        hasReadMore: true,
+                        photos: []
+                    },
+                    {
+                        name: 'Emma',
+                        location: 'Perth - 1 review',
+                        date: 'Dined on May 28, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 5,
+                        ambience: 4,
+                        comment: 'Nice place for a date night. The food was good and the service was excellent. The atmosphere was romantic and cozy.',
+                        hasReadMore: false,
+                        photos: []
+                    }
+                ],
+                2: [
+                    {
+                        name: 'James',
+                        location: 'Adelaide - 8 reviews',
+                        date: 'Dined on May 25, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Been coming here for years and it never disappoints. The quality is consistently excellent and the staff remember our preferences.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Sophie',
+                        location: 'Adelaide - 3 reviews',
+                        date: 'Dined on May 22, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Perfect spot for brunch! The avocado toast was amazing and the coffee was top-notch. Love the outdoor seating area.',
+                        hasReadMore: false,
+                        photos: [
+                            'https://resizer.otstatic.com/v3/photos/32600168-3?width=70&height=70&webp=true'
+                        ]
+                    },
+                    {
+                        name: 'Tom',
+                        location: 'Melbourne - 4 reviews',
+                        date: 'Dined on May 20, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 5,
+                        ambience: 4,
+                        comment: 'Great Italian food! The pasta was perfectly al dente and the sauce was rich and flavorful. Service was attentive.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Rachel',
+                        location: 'Sydney - 2 reviews',
+                        date: 'Dined on May 18, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Amazing experience! The wine pairing was perfect and the dessert was to die for. Highly recommend for special occasions.',
+                        hasReadMore: true,
+                        photos: []
+                    },
+                    {
+                        name: 'Alex',
+                        location: 'Brisbane - 1 review',
+                        date: 'Dined on May 15, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 4,
+                        ambience: 5,
+                        comment: 'Nice atmosphere and good food. The portions were generous and the staff were friendly. Would visit again.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Maria',
+                        location: 'Perth - 5 reviews',
+                        date: 'Dined on May 12, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Exceptional dining experience! The gnocchi was homemade and the tiramisu was the best I\'ve ever had.',
+                        hasReadMore: false,
+                        photos: [
+                            'https://resizer.otstatic.com/v3/photos/32600170-3?width=70&height=70&webp=true'
+                        ]
+                    }
+                ],
+                3: [
+                    {
+                        name: 'Chris',
+                        location: 'Adelaide - 6 reviews',
+                        date: 'Dined on May 10, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Outstanding service and delicious food. The staff went above and beyond to make our anniversary special.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Jessica',
+                        location: 'Melbourne - 3 reviews',
+                        date: 'Dined on May 8, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 5,
+                        ambience: 4,
+                        comment: 'Great place for a business lunch. The food was good and the service was professional and efficient.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Daniel',
+                        location: 'Sydney - 4 reviews',
+                        date: 'Dined on May 5, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Fantastic Italian cuisine! The risotto was creamy and the wine selection was excellent. Perfect date night spot.',
+                        hasReadMore: true,
+                        photos: [
+                            'https://resizer.otstatic.com/v3/photos/32600169-3?width=70&height=70&webp=true'
+                        ]
+                    },
+                    {
+                        name: 'Amanda',
+                        location: 'Brisbane - 2 reviews',
+                        date: 'Dined on May 3, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 4,
+                        ambience: 5,
+                        comment: 'Lovely atmosphere and good food. The outdoor seating was perfect for the weather. Staff were friendly.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Kevin',
+                        location: 'Perth - 1 review',
+                        date: 'Dined on May 1, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Amazing food and service! The pasta dishes were authentic and the desserts were heavenly.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Laura',
+                        location: 'Adelaide - 3 reviews',
+                        date: 'Dined on April 28, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 5,
+                        ambience: 4,
+                        comment: 'Good food and nice atmosphere. The coffee was excellent and the breakfast menu had great options.',
+                        hasReadMore: false,
+                        photos: []
+                    }
+                ],
+                49: [
+                    {
+                        name: 'Lisa',
+                        location: 'Adelaide - 2 reviews',
+                        date: 'Dined on January 10, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 4,
+                        ambience: 5,
+                        comment: 'Good food and nice atmosphere. The outdoor seating is perfect for summer evenings. Would recommend for casual dining.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Mark',
+                        location: 'Melbourne - 7 reviews',
+                        date: 'Dined on January 8, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Consistently excellent! Been coming here for years and the quality never drops. Best Italian in Adelaide.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Nicole',
+                        location: 'Sydney - 5 reviews',
+                        date: 'Dined on January 5, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 5,
+                        ambience: 4,
+                        comment: 'Great place for family dinner. The kids loved the pasta and the adults enjoyed the wine selection.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Peter',
+                        location: 'Brisbane - 3 reviews',
+                        date: 'Dined on January 3, 2025',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Outstanding experience! The food was authentic Italian and the service was impeccable.',
+                        hasReadMore: true,
+                        photos: []
+                    },
+                    {
+                        name: 'Helen',
+                        location: 'Perth - 2 reviews',
+                        date: 'Dined on January 1, 2025',
+                        rating: 4,
+                        food: 4,
+                        service: 4,
+                        ambience: 5,
+                        comment: 'Nice restaurant with good food. The atmosphere was relaxed and the staff were helpful.',
+                        hasReadMore: false,
+                        photos: []
+                    },
+                    {
+                        name: 'Robert',
+                        location: 'Adelaide - 4 reviews',
+                        date: 'Dined on December 30, 2024',
+                        rating: 5,
+                        food: 5,
+                        service: 5,
+                        ambience: 5,
+                        comment: 'Perfect way to end the year! The food was exceptional and the service was outstanding.',
+                        hasReadMore: false,
+                        photos: []
+                    }
+                ]
+            };
+
+            function renderReviews(pageNumber) {
+                const reviewsContainer = document.querySelector('.customer-reviews');
+                if (!reviewsContainer) return;
+                
+                const reviewsList = reviewsContainer.querySelector('.review-item').parentNode;
+                
+                // Clear existing reviews
+                const existingReviews = reviewsContainer.querySelectorAll('.review-item');
+                existingReviews.forEach(review => review.remove());
+                
+                // Get reviews for current page
+                const currentReviews = reviewsData[pageNumber] || reviewsData[1];
+                
+                // Render new reviews
+                currentReviews.forEach(review => {
+                    const reviewHTML = `
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="profile-icon ${getProfileColor(review.name)}">${review.name.charAt(0)}</div>
+                                    <div class="reviewer-details">
+                                        <div class="reviewer-name">${review.name}</div>
+                                        <div class="reviewer-location">${review.location}</div>
+                                        <div class="dining-date">${review.date}</div>
+                                    </div>
+                                </div>
+                                <div class="review-ratings">
+                                    <div class="overall-rating">
+                                        <span class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</span>
+                                        <span class="rating-text">Overall ${review.rating}</span>
+                                    </div>
+                                    <div class="detailed-ratings">
+                                        <span>Food ${review.food}</span> • <span>Service ${review.service}</span> • <span>Ambience ${review.ambience}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p class="review-comment">${review.comment}${review.hasReadMore ? ' <a href="#" class="read-more">Read more</a>' : ''}</p>
+                                ${review.photos.length > 0 ? `
+                                    <div class="review-photos">
+                                        ${review.photos.map(photo => `<img src="${photo}" alt="Food photo" class="review-image">`).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <div class="review-helpful">
+                                <span class="helpful-icon">👍</span>
+                                <span class="helpful-text">Is this helpful?</span>
+                            </div>
+                        </div>
+                    `;
+                    reviewsList.insertAdjacentHTML('beforeend', reviewHTML);
+                });
+            }
+
+            function getProfileColor(name) {
+                const colors = ['purple', 'blue', 'pink', 'green', 'orange', 'red'];
+                const index = name.charCodeAt(0) % colors.length;
+                return colors[index];
+            }
+
+            // Add pagination event listeners
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('page-number')) {
+                    const pageNumber = parseInt(e.target.dataset.page);
+                    console.log('Page clicked:', pageNumber);
+                    
+                    // Update active state
+                    document.querySelectorAll('.page-number').forEach(page => page.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    // Render reviews for selected page
+                    renderReviews(pageNumber);
                 }
+            });
+
+            // Initialize with page 1
+            setTimeout(() => {
+                console.log('Initializing pagination...');
+                renderReviews(1);
+            }, 100);
+
+            // FAQs functionality
+            const faqHeaders = document.querySelectorAll('.faq-header');
+            faqHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    const arrow = this.querySelector('.faq-arrow');
+                    const answer = faqItem.querySelector('.faq-answer');
+                    
+                    // Toggle active state
+                    arrow.classList.toggle('active');
+                    
+                    // Toggle answer visibility
+                    if (answer.style.display === 'none' || answer.style.display === '') {
+                        answer.style.display = 'block';
+                    } else {
+                        answer.style.display = 'none';
+                    }
+                });
+            });
+
+            // Breadcrumb navigation
+            const breadcrumbItems = document.querySelectorAll('.breadcrumb-nav span:not(.breadcrumb-separator)');
+            breadcrumbItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    console.log('Breadcrumb clicked:', this.textContent);
+                    // Add navigation logic here
+                });
             });
         });
     </script>
