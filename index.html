@@ -156,7 +156,30 @@
 
         .nav-tab.active {
             color: #da3743;
-            border-bottom-color: #da3743;
+            border-bottom-color: transparent;
+        }
+
+        /* Red underline indicator for active tab */
+        .nav-tab {
+            position: relative;
+        }
+
+        .nav-tab::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px; /* overlap container bottom border */
+            height: 2px;
+            background: transparent;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s ease, background-color 0.25s ease;
+        }
+
+        .nav-tab.active::after {
+            background-color: #da3743;
+            transform: scaleX(1);
         }
 
         .tab-content {
@@ -365,6 +388,22 @@
         .rating-distribution {
             margin-bottom: 24px;
         }
+        /* Reviews overview layout */
+        .reviews-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+            grid-auto-rows: min-content;
+        }
+        /* Tighter vertical spacing for left column content */
+        .reviews-overview .reviews-note { margin-bottom: 8px; }
+        .reviews-overview .rating-display { margin-bottom: 8px; }
+        .reviews-overview .category-ratings { gap: 12px; margin: 6px 0 10px 0; }
+        .reviews-overview .noise-level { margin-bottom: 16px; }
+        /* Within reviews-overview: left group vs histogram right */
+        .reviews-overview > .reviews-left { grid-column: 1; }
+        .reviews-overview > .rating-distribution { grid-column: 2; grid-row: 1 / -1; align-self: start; }
         .rating-bar {
             display: flex;
             align-items: center;
@@ -389,28 +428,13 @@
             border-radius: 4px;
         }
         .category-ratings {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
+            display: flex;
+            gap: 24px;
+            margin: 8px 0 20px 0;
         }
-        .category-box {
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-        }
-        .category-score {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 4px;
-        }
-        .category-name {
-            font-size: 12px;
-            color: #666;
-        }
+        .category-item { text-align: center; }
+        .category-score { font-size: 16px; font-weight: 600; color: #2d3748; line-height: 1; }
+        .category-name { font-size: 12px; color: #666; margin-top: 2px; }
         .noise-level {
             display: flex;
             align-items: center;
@@ -853,6 +877,12 @@
                 overflow-x: auto;
             }
             
+            /* Make tabs equally spaced and centered on mobile */
+            .nav-tab {
+                flex: 1 1 0;
+                text-align: center;
+            }
+            
             .time-slots {
                 grid-template-columns: 1fr;
             }
@@ -861,6 +891,13 @@
                 grid-template-columns: 1fr 1fr;
                 height: 300px;
             }
+
+            /* Stack reviews overview on mobile */
+            .reviews-overview {
+                grid-template-columns: 1fr;
+            }
+            .reviews-overview > .rating-distribution { grid-column: 1; grid-row: auto; }
+            .reviews-overview > .reviews-left { grid-column: 1; }
 
             .photo-item.large {
                 grid-column: span 2;
@@ -888,6 +925,7 @@
         }
 
         .review-item {
+            margin-top: 10px;
             border-bottom: 1px solid #e2e8f0;
             padding: 24px 0;
         }
@@ -897,7 +935,6 @@
         }
 
         .review-header {
-            display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 16px;
@@ -970,6 +1007,7 @@
         }
 
         .review-ratings {
+            margin-top: 20px;
             text-align: right;
             min-width: 120px;
         }
@@ -1781,17 +1819,40 @@
                         </div>
                         
                         <div class="reviews-section">
-                            <h3>What 490 people are saying</h3>
+                            <h3>What 491 people are saying</h3>
                             <p class="reviews-subtitle">Hello Neighbour Artusi By Night reviews from people who've dined at this restaurant. Based on recent rating.</p>
                             
                             <div class="reviews-overview">
-                                <p class="reviews-note">Reviews can only be made by diners who have eaten at this restaurant</p>
-                                
-                                <div class="rating-display">
-                                    <div class="stars">★★★★★</div>
-                                    <span class="rating-text">4.7 based on recent ratings</span>
+                                <div class="reviews-left">
+                                    <p class="reviews-note">Reviews can only be made by diners who have eaten at this restaurant</p>
+                                    <div class="rating-display">
+                                        <div class="stars">★★★★★</div>
+                                        <span class="rating-text">4.6 based on recent ratings</span>
+                                    </div>
+                                    <div class="category-ratings">
+                                        <div class="category-item">
+                                            <div class="category-score">4.6</div>
+                                            <div class="category-name">Food</div>
+                                        </div>
+                                        <div class="category-item">
+                                            <div class="category-score">4.7</div>
+                                            <div class="category-name">Service</div>
+                                        </div>
+                                        <div class="category-item">
+                                            <div class="category-score">4.7</div>
+                                            <div class="category-name">Ambience</div>
+                                        </div>
+                                        <div class="category-item">
+                                            <div class="category-score">4.4</div>
+                                            <div class="category-name">Value</div>
+                                        </div>
+                                    </div>
+                                    <div class="noise-level">
+                                        <span class="noise-icon">📊</span>
+                                        <span>Noise • Energetic</span>
+                                    </div>
                                 </div>
-                                
+
                                 <div class="rating-distribution">
                                     <div class="rating-bar">
                                         <span class="rating-number">5</span>
@@ -1823,30 +1884,6 @@
                                             <div class="bar-fill" style="width: 0%;"></div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <div class="category-ratings">
-                                    <div class="category-box">
-                                        <div class="category-score">4.7</div>
-                                        <div class="category-name">Food</div>
-                                    </div>
-                                    <div class="category-box">
-                                        <div class="category-score">4.7</div>
-                                        <div class="category-name">Service</div>
-                                    </div>
-                                    <div class="category-box">
-                                        <div class="category-score">4.7</div>
-                                        <div class="category-name">Ambience</div>
-                                    </div>
-                                    <div class="category-box">
-                                        <div class="category-score">4.5</div>
-                                        <div class="category-name">Value</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="noise-level">
-                                    <span class="noise-icon">📊</span>
-                                    <span>Noise • Energetic</span>
                                 </div>
                             </div>
                             
@@ -2340,7 +2377,7 @@
                     </div>
                     
                     <div class="reviews-section">
-                        <h3>What 490 people are saying</h3>
+                        <h3>What 491 people are saying</h3>
                         <p class="reviews-subtitle">Hello Neighbour Artusi By Night reviews from people who've dined at this restaurant. Based on recent rating.</p>
                         
                         <div class="reviews-overview">
@@ -2348,7 +2385,7 @@
                             
                             <div class="rating-display">
                                 <div class="stars">★★★★★</div>
-                                <span class="rating-text">4.7 based on recent ratings</span>
+                                <span class="rating-text">4.6 based on recent ratings</span>
                             </div>
                             
                             <div class="rating-distribution">
@@ -2385,20 +2422,20 @@
                             </div>
                             
                             <div class="category-ratings">
-                                <div class="category-box">
-                                    <div class="category-score">4.7</div>
+                                <div class="category-item">
+                                    <div class="category-score">4.6</div>
                                     <div class="category-name">Food</div>
                                 </div>
-                                <div class="category-box">
+                                <div class="category-item">
                                     <div class="category-score">4.7</div>
                                     <div class="category-name">Service</div>
                                 </div>
-                                <div class="category-box">
+                                <div class="category-item">
                                     <div class="category-score">4.7</div>
                                     <div class="category-name">Ambience</div>
                                 </div>
-                                <div class="category-box">
-                                    <div class="category-score">4.5</div>
+                                <div class="category-item">
+                                    <div class="category-score">4.4</div>
                                     <div class="category-name">Value</div>
                                 </div>
                             </div>
@@ -2444,7 +2481,7 @@
 
                 <div id="reviews" class="tab-panel" style="display: none;">
                     <div class="reviews-section">
-                        <h3>What 490 people are saying</h3>
+                        <h3>What 491 people are saying</h3>
                         <p class="reviews-subtitle">Hello Neighbour Artusi By Night reviews from people who've dined at this restaurant. Based on recent rating.</p>
                         
                         <div class="reviews-overview">
@@ -2452,7 +2489,7 @@
                             
                             <div class="rating-display">
                                 <div class="stars">★★★★★</div>
-                                <span class="rating-text">4.7 based on recent ratings</span>
+                                <span class="rating-text">4.6 based on recent ratings</span>
                             </div>
                             
                             <div class="rating-distribution">
@@ -2489,20 +2526,20 @@
                             </div>
                             
                             <div class="category-ratings">
-                                <div class="category-box">
-                                    <div class="category-score">4.7</div>
+                                <div class="category-item">
+                                    <div class="category-score">4.6</div>
                                     <div class="category-name">Food</div>
                                 </div>
-                                <div class="category-box">
+                                <div class="category-item">
                                     <div class="category-score">4.7</div>
                                     <div class="category-name">Service</div>
                                 </div>
-                                <div class="category-box">
+                                <div class="category-item">
                                     <div class="category-score">4.7</div>
                                     <div class="category-name">Ambience</div>
                                 </div>
-                                <div class="category-box">
-                                    <div class="category-score">4.5</div>
+                                <div class="category-item">
+                                    <div class="category-score">4.4</div>
                                     <div class="category-name">Value</div>
                                 </div>
                             </div>
