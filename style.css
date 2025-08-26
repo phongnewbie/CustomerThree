@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -1000,7 +999,7 @@ body {
     border-bottom: none;
 }
 
-.review-header {
+    .review-header {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 16px;
@@ -1803,14 +1802,6 @@ body {
         gap: 12px;
     }
     
-    .input-btn {
-        padding: 12px 16px;
-        font-size: 15px;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
-        position: relative;
-    }
-    
     /* Time slots tablet - 3 columns horizontal */
     .time-slots {
         grid-template-columns: repeat(3, 1fr) !important;
@@ -2273,3 +2264,199 @@ body {
 
 /* Helper class if needed for upward dropdowns */
 .dropdown-up { bottom: 100%; top: auto !important; margin-top: 0; }
+
+@media (max-width: 768px) {
+    /* Ensure popovers are not clipped on mobile */
+    .main-content { overflow: visible; }
+    .booking-panel { overflow: visible; }
+    .booking-panel .dropdown-panel { max-height: 260px; overflow: auto; }
+    /* Force people dropdown to open downward on mobile to avoid being cut off */
+    .booking-mobile .dropdown-up { top: 100% !important; bottom: auto !important; margin-top: 4px; margin-bottom: 0; }
+}
+
+@media (max-width: 768px) {
+    /* Compact overall paddings */
+    .tab-content { padding: 16px 12px; }
+    .booking-panel { padding: 0 12px 16px; }
+
+    /* Input buttons a bit smaller */
+    .input-btn { padding: 10px 12px; font-size: 14px; }
+
+    /* Select a time – more compact */
+    .time-slots {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        padding-top: 2px;
+    }
+
+    .time-slot {
+        min-height: 36px;
+        padding: 8px 6px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 6px;
+    }
+
+    .notify-btn {
+        min-height: 36px;
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+
+    /* People dropdown width on mobile */
+    .booking-mobile #people-panel { width: 180px; }
+}
+
+/* Extra-narrow phones */
+@media (max-width: 380px) {
+    .time-slots { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 6px !important; }
+    .time-slot { min-height: 32px; padding: 6px 4px; font-size: 11px; border-radius: 5px; }
+    .notify-btn { min-height: 36px; font-size: 13px; }
+    .input-btn { padding: 9px 10px; font-size: 13px; }
+}
+
+/* Hide Restaurants you may also like everywhere */
+.recommend-title,
+.recommend-container { display: none !important; }
+
+@media (max-width: 768px) {
+    /* Make a reservation – compact sizing */
+    .booking-panel { padding: 0 10px 14px; }
+    .booking-title { font-size: 16px; margin: 10px 0 12px; }
+    .input-stack { gap: 8px; }
+    .input-grid { gap: 8px; }
+    .input-btn { padding: 9px 10px; font-size: 13px; border-radius: 6px; }
+
+    .info-alert { padding: 8px 10px; font-size: 12px; border-radius: 6px; }
+    .primary-outline-btn { padding: 10px 12px; font-size: 13px; border-radius: 6px; }
+
+    .form-group { margin-top: 12px; }
+    .form-group .form-label { font-size: 14px; margin-bottom: 8px; }
+
+    .time-slots { gap: 6px !important; }
+    .time-slot { min-height: 32px; padding: 6px 4px; font-size: 11.5px; }
+    .notify-btn { min-height: 34px; padding: 10px 12px; font-size: 13px; }
+
+    .booking-info { padding: 10px; font-size: 13px; border-radius: 6px; }
+
+    .additional-options { padding: 10px; font-size: 13px; border-radius: 6px; }
+
+    .map-embed { height: 160px; }
+    .address-row { padding: 8px 10px; font-size: 13px; }
+
+    .section-title { margin-top: 16px; font-size: 15px; }
+    .chips { gap: 6px; }
+    .chip { padding: 6px 10px; font-size: 12px; }
+}
+
+@media (max-width: 768px) {
+    /* Even more compact reservation UI */
+    .booking-panel { padding: 0 8px 12px; }
+    .booking-title { font-size: 15px; margin: 8px 0 10px; }
+    .input-stack { gap: 6px; }
+    .input-grid { gap: 6px; }
+    .input-btn { padding: 8px 9px; font-size: 12px; border-radius: 5px; }
+
+    .info-alert { padding: 7px 9px; font-size: 11.5px; border-radius: 5px; }
+    .primary-outline-btn { padding: 9px 10px; font-size: 12.5px; border-radius: 5px; }
+
+    .form-group { margin-top: 10px; }
+    .form-group .form-label { font-size: 13px; margin-bottom: 6px; }
+
+    .time-slots { gap: 5px !important; padding-top: 0; }
+    .time-slot { min-height: 30px; padding: 5px 4px; font-size: 10.5px; border-radius: 5px; }
+    .notify-btn { min-height: 32px; padding: 9px 10px; font-size: 12.5px; border-radius: 5px; }
+
+    .booking-info { padding: 8px; font-size: 12.5px; border-radius: 5px; }
+    .additional-options { padding: 8px; font-size: 12.5px; border-radius: 5px; }
+
+    .map-embed { height: 140px; }
+    .address-row { padding: 6px 8px; font-size: 12.5px; }
+
+    .section-title { margin-top: 14px; font-size: 14px; }
+    .chips { gap: 5px; }
+    .chip { padding: 5px 8px; font-size: 11.5px; }
+
+    /* People dropdown narrower */
+    .booking-mobile #people-panel { width: 160px; }
+}
+
+/* Extra-narrow phones */
+@media (max-width: 360px) {
+    .time-slots { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 4px !important; }
+    .time-slot { min-height: 28px; padding: 4px 3px; font-size: 10px; border-radius: 4px; }
+    .notify-btn { min-height: 30px; font-size: 12px; }
+    .input-btn { padding: 7px 8px; font-size: 12px; }
+    .booking-title { font-size: 14px; }
+}
+
+/* Prevent horizontal overflow globally */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+@media (max-width: 768px) {
+    /* Ensure containers don't exceed screen width */
+    .container, .main-content, .booking-panel, .tab-content { max-width: 100%; box-sizing: border-box; }
+    .input-grid { width: 100%; }
+
+    /* Extra compact paddings */
+    .tab-content { padding: 12px 8px; }
+    .booking-panel { padding: 0 8px 10px; }
+
+    /* Inputs tighter */
+    .input-btn { padding: 7px 8px; font-size: 12px; }
+
+    /* Time slots – compact */
+    .time-slots { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 4px !important; }
+    .time-slot { min-height: 28px; padding: 4px 3px; font-size: 10px; }
+    .notify-btn { min-height: 30px; padding: 8px 10px; font-size: 12px; }
+}
+
+/* Ultra-narrow phones: keep everything on one screen without overflow */
+@media (max-width: 330px) {
+    .tab-content { padding: 10px 6px; }
+    .booking-panel { padding: 0 6px 8px; }
+    .booking-title { font-size: 13px; }
+    .input-btn { padding: 6px 7px; font-size: 11px; }
+    .time-slots { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 3px !important; }
+    .time-slot { min-height: 24px; padding: 3px 2px; font-size: 9.5px; border-radius: 4px; }
+    .notify-btn { min-height: 28px; font-size: 11.5px; border-radius: 4px; }
+}
+
+@media (max-width: 768px) {
+    /* Make a reservation — ultra compact */
+    .booking-panel { padding: 0 6px 8px; }
+    .booking-title { font-size: 13px; margin: 6px 0 8px; }
+
+    .input-stack { gap: 5px; }
+    .input-grid { gap: 5px; }
+    .input-btn { padding: 6px 7px; font-size: 11px; border-radius: 4px; line-height: 1.2; }
+    .input-btn .left { gap: 6px; }
+    .chevron { font-size: 12px; }
+
+    .form-group { margin-top: 8px; }
+    .form-group .form-label { font-size: 12px; margin-bottom: 6px; }
+
+    .time-slots { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 3px !important; }
+    .time-slot { min-height: 22px; padding: 2px 2px; font-size: 9px; border-radius: 4px; }
+    .notify-btn { min-height: 26px; padding: 6px 8px; font-size: 11px; border-radius: 4px; }
+
+    .info-alert { padding: 6px 8px; font-size: 11px; border-radius: 4px; }
+    .primary-outline-btn { padding: 8px 9px; font-size: 12px; border-radius: 4px; }
+
+    .booking-info { padding: 7px; font-size: 12px; border-radius: 4px; }
+    .additional-options { padding: 7px; font-size: 12px; border-radius: 4px; }
+
+    .map-embed { height: 120px; }
+    .address-row { padding: 6px 8px; font-size: 12px; }
+
+    .section-title { margin-top: 12px; font-size: 13px; }
+    .chips { gap: 4px; }
+    .chip { padding: 4px 8px; font-size: 11px; }
+
+    /* People dropdown narrower and compact */
+    .booking-mobile #people-panel { width: 150px; }
+    .people-options { gap: 4px; }
+    .time-option { gap: 6px; font-size: 12px; padding: 6px 8px; }
+    .person-icon { width: 16px; }
+}
