@@ -3,7 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello Neighbour Artusi By Night - OpenTable</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -89,10 +88,22 @@
                 <h2 class="booking-title">Make a reservation</h2>
 
                 <div class="input-stack">
-                    <button id="btn-people" class="input-btn" type="button" style="position:relative;">
-                        <span class="left">👥 <span id="lbl-people">2 people</span></span>
-                        <span class="chevron">▾</span>
-                    </button>
+                    <div class="input-grid">
+                        <button id="btn-people" class="input-btn" type="button" style="position:relative;">
+                            <span class="left">👥 <span id="lbl-people">2 people</span></span>
+                            <span class="chevron">▾</span>
+                        </button>
+                        <button id="btn-date" class="input-btn" type="button" style="position:relative;">
+                            <span class="left">📅 <span id="btn-date-label">Select date</span></span>
+                            <span class="chevron">▾</span>
+                        </button>
+                        <button id="btn-time" class="input-btn" type="button" style="position:relative;">
+                            <span class="left">🕙 <span id="btn-time-label">Select time</span></span>
+                            <span class="chevron">▾</span>
+                        </button>
+                        <!-- custom dropdown containers -->
+                        <div id="time-panel" class="dropdown-panel time-panel" style="display:none;"></div>
+                    </div>
                     <div id="people-panel" class="dropdown-panel dropdown-up" style="display:none; position:absolute; bottom:100%; left:0; margin-bottom:4px; width: 220px;">
                         <div class="people-options">
                             <button class="time-option" data-people="1"><span class="person-icon">👤</span><span>1 person</span></button>
@@ -107,18 +118,6 @@
                             <button class="time-option" data-people="10"><span class="person-icon">👤</span><span>10 people</span></button>
                         </div>
                     </div>
-                    <div class="input-grid">
-                        <button id="btn-date" class="input-btn" type="button" style="position:relative;">
-                            <span class="left">📅 <span id="btn-date-label">Select date</span></span>
-                            <span class="chevron">▾</span>
-                        </button>
-                        <button id="btn-time" class="input-btn" type="button" style="position:relative;">
-                            <span class="left">🕙 <span id="btn-time-label">Select time</span></span>
-                            <span class="chevron">▾</span>
-                        </button>
-                        <!-- custom dropdown containers -->
-                        <div id="time-panel" class="dropdown-panel time-panel" style="display:none;"></div>
-                    </div>
                     <input id="res-date" class="native-picker" type="date" />
                     <input id="res-time" class="native-picker" type="time" step="900" />
                     <!-- custom dropdown containers -->
@@ -130,7 +129,7 @@
                     <span>At the moment, there's no online availability within 2.5 hours of 10:00 PM.</span>
                 </div>
 
-                <button class="primary-outline-btn" style="margin-top:10px;">Show next available</button>
+                <button class="notify-outline" style="margin-top:10px; width:100%;">🔔 Notify me</button>
 
                 <div class="form-group" style="margin-top:16px;">
                     <label class="form-label">Select a time</label>

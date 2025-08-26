@@ -2424,25 +2424,25 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 @media (max-width: 768px) {
-    /* Make a reservation — ultra compact */
-    .booking-panel { padding: 0 6px 8px; }
-    .booking-title { font-size: 13px; margin: 6px 0 8px; }
+    /* Make a reservation — like screenshot */
+    .booking-panel { padding: 0 10px 14px; }
+    .booking-title { font-size: 16px; margin: 10px 0 12px; }
 
-    .input-stack { gap: 5px; }
-    .input-grid { gap: 5px; }
-    .input-btn { padding: 6px 7px; font-size: 11px; border-radius: 4px; line-height: 1.2; }
+    .input-stack { gap: 8px; }
+    .input-grid { gap: 8px; grid-template-columns: 1fr 1fr 1fr !important; }
+    .input-btn { padding: 10px 12px; font-size: 13px; border-radius: 6px; line-height: 1.2; min-height: 44px; }
     .input-btn .left { gap: 6px; }
     .chevron { font-size: 12px; }
 
     .form-group { margin-top: 8px; }
     .form-group .form-label { font-size: 12px; margin-bottom: 6px; }
 
-    .time-slots { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 3px !important; }
-    .time-slot { min-height: 22px; padding: 2px 2px; font-size: 9px; border-radius: 4px; }
-    .notify-btn { min-height: 26px; padding: 6px 8px; font-size: 11px; border-radius: 4px; }
+    .time-slots { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 6px !important; }
+    .time-slot { min-height: 36px; padding: 8px 6px; font-size: 12px; border-radius: 6px; }
+    .notify-btn, .primary-outline-btn, .notify-outline { min-height: 44px; padding: 10px 12px; font-size: 14px; border-radius: 6px; width: 100%; }
 
-    .info-alert { padding: 6px 8px; font-size: 11px; border-radius: 4px; }
-    .primary-outline-btn { padding: 8px 9px; font-size: 12px; border-radius: 4px; }
+    .info-alert { padding: 10px 12px; font-size: 12.5px; border-radius: 6px; background: #f9fafb; border: 1px solid #e5e7eb; color: #374151; }
+    .primary-outline-btn { padding: 10px 12px; font-size: 13px; border-radius: 6px; }
 
     .booking-info { padding: 7px; font-size: 12px; border-radius: 4px; }
     .additional-options { padding: 7px; font-size: 12px; border-radius: 4px; }
