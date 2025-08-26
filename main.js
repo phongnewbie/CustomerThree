@@ -189,6 +189,16 @@ function showTab(tabName) {
     const calPanel = document.getElementById('calendar-panel');
     const timePanel = document.getElementById('time-panel');
 
+    // Desktop counterparts (if present)
+    const resDateDesk = document.getElementById('res-date-desk');
+    const resTimeDesk = document.getElementById('res-time-desk');
+    const btnDateDesk = document.getElementById('btn-date-desk');
+    const btnTimeDesk = document.getElementById('btn-time-desk');
+    const lblDateDesk = document.getElementById('btn-date-label-desk');
+    const lblTimeDesk = document.getElementById('btn-time-label-desk');
+    const calPanelDesk = document.getElementById('calendar-panel-desk');
+    const timePanelDesk = document.getElementById('time-panel-desk');
+
     function formatDateLabel(yyyyMmDd) {
         const d = new Date(yyyyMmDd + 'T00:00:00');
         return d.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
@@ -203,130 +213,158 @@ function showTab(tabName) {
         return `${h}:${m} ${ampm}`;
     }
 
-    // Initialize with current date and nearest 15 minutes
-    const now = new Date();
-    const today = now.toISOString().split('T')[0];
-    const minutes = now.getMinutes();
-    const roundedMinutes = Math.round(minutes / 15) * 15;
-    now.setMinutes(roundedMinutes, 0, 0);
-    const hh = String(now.getHours()).padStart(2, '0');
-    const mm = String(now.getMinutes()).padStart(2, '0');
-    const hhmm = `${hh}:${mm}`;
+    // Initialize with current date and nearest 15 minutes for both contexts if present
+    (function initDateTimeDefaults(){
+        const now = new Date();
+        const today = now.toISOString().split('T')[0];
+        const minutes = now.getMinutes();
+        const roundedMinutes = Math.round(minutes / 15) * 15;
+        now.setMinutes(roundedMinutes, 0, 0);
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mm = String(now.getMinutes()).padStart(2, '0');
+        const hhmm = `${hh}:${mm}`;
 
-    resDate.value = today;
-    resTime.value = hhmm;
-    lblDate.textContent = formatDateLabel(today);
-    lblTime.textContent = formatTimeLabel(hhmm);
-
-    // Open native pickers on button click
-    function togglePanel(panel, anchor) {
-        const rect = anchor.getBoundingClientRect();
-        panel.style.top = (rect.bottom + 6) + 'px';
-        panel.style.left = rect.left + 'px';
-        const visible = panel.style.display !== 'none';
-        calPanel.style.display = 'none';
-        timePanel.style.display = 'none';
-        panel.style.display = visible ? 'none' : 'block';
-    }
-
-    // Build calendar UI
-    function getMonthMatrix(year, monthIndex) {
-        const firstDay = new Date(year, monthIndex, 1);
-        const startDay = new Date(firstDay);
-        startDay.setDate(firstDay.getDate() - ((firstDay.getDay() + 6) % 7)); // Monday-first
-        const cells = [];
-        for (let i = 0; i < 42; i++) {
-            const d = new Date(startDay);
-            d.setDate(startDay.getDate() + i);
-            cells.push(d);
+        if (resDate && resTime && lblDate && lblTime) {
+            resDate.value = today;
+            resTime.value = hhmm;
+            lblDate.textContent = formatDateLabel(today);
+            lblTime.textContent = formatTimeLabel(hhmm);
         }
-        return cells;
+        if (resDateDesk && resTimeDesk && lblDateDesk && lblTimeDesk) {
+            resDateDesk.value = today;
+            resTimeDesk.value = hhmm;
+            lblDateDesk.textContent = formatDateLabel(today);
+            lblTimeDesk.textContent = formatTimeLabel(hhmm);
+        }
+    })();
+
+    // Toggle helpers using class 'show'
+    function togglePanel(panel) {
+        const visible = panel.classList.contains('show');
+        panel.classList.toggle('show', !visible);
     }
 
-    let calYear = now.getFullYear();
-    let calMonth = now.getMonth();
+    // Build calendar UI for a given context (inputs/labels/panel)
+    function wireCalendar(btn, panel, resInput, lbl) {
+        if (!btn || !panel || !resInput || !lbl) return;
 
-    function renderCalendar() {
-        const cells = getMonthMatrix(calYear, calMonth);
-        const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-        const todayStr = new Date().toISOString().split('T')[0];
-        const selectedStr = resDate.value;
-
-        calPanel.innerHTML = `
-            <div class="calendar">
-                <div class="cal-header">
-                    <button class="icon-btn" id="cal-prev">‹</button>
-                    <div>${monthLabel}</div>
-                    <button class="icon-btn" id="cal-next">›</button>
-                </div>
-                <div class="cal-week"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
-                <div class="cal-grid">
-                    ${cells.map(d => {
-                        const iso = d.toISOString().split('T')[0];
-                        const isOther = d.getMonth() !== calMonth;
-                        const isToday = iso === todayStr;
-                        const isSelected = iso === selectedStr;
-                        return `<div class="cal-cell ${isOther ? 'is-other' : ''} ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}" data-date="${iso}">${d.getDate()}</div>`;
-                    }).join('')}
-                </div>
-            </div>`;
-
-        calPanel.querySelector('#cal-prev').addEventListener('click', () => {
-            if (calMonth === 0) { calMonth = 11; calYear--; } else { calMonth--; }
-            renderCalendar();
-        });
-        calPanel.querySelector('#cal-next').addEventListener('click', () => {
-            if (calMonth === 11) { calMonth = 0; calYear++; } else { calMonth++; }
-            renderCalendar();
-        });
-        calPanel.querySelectorAll('.cal-cell').forEach(cell => {
-            cell.addEventListener('click', () => {
-                const val = cell.getAttribute('data-date');
-                resDate.value = val;
-                lblDate.textContent = formatDateLabel(val);
-                calPanel.style.display = 'none';
-            });
-        });
-    }
-
-    function renderTimeOptions() {
-        const openHour = 7;  // 7:00
-        const closeHour = 22; // 10:00 PM
-        const stepMin = 15;
-        const options = [];
-        for (let h = openHour; h <= closeHour; h++) {
-            for (let m = 0; m < 60; m += stepMin) {
-                const hh = String(h).padStart(2, '0');
-                const mm = String(m).padStart(2, '0');
-                options.push(`${hh}:${mm}`);
+        function getMonthMatrix(year, monthIndex) {
+            const firstDay = new Date(year, monthIndex, 1);
+            const startDay = new Date(firstDay);
+            startDay.setDate(firstDay.getDate() - ((firstDay.getDay() + 6) % 7)); // Monday-first
+            const cells = [];
+            for (let i = 0; i < 42; i++) {
+                const d = new Date(startDay);
+                d.setDate(startDay.getDate() + i);
+                cells.push(d);
             }
+            return cells;
         }
-        timePanel.innerHTML = options.map(t => `<button class="time-option" data-time="${t}">${formatTimeLabel(t)}</button>`).join('');
-        timePanel.querySelectorAll('.time-option').forEach(opt => {
-            opt.addEventListener('click', () => {
-                const val = opt.getAttribute('data-time');
-                resTime.value = val;
-                lblTime.textContent = formatTimeLabel(val);
-                timePanel.style.display = 'none';
+
+        let now = new Date();
+        let calYear = now.getFullYear();
+        let calMonth = now.getMonth();
+
+        function renderCalendar() {
+            const cells = getMonthMatrix(calYear, calMonth);
+            const monthLabel = new Date(calYear, calMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            const todayStr = new Date().toISOString().split('T')[0];
+            const selectedStr = resInput.value;
+
+            panel.innerHTML = `
+                <div class="calendar">
+                    <div class="cal-header">
+                        <button class="icon-btn" id="cal-prev">‹</button>
+                        <div>${monthLabel}</div>
+                        <button class="icon-btn" id="cal-next">›</button>
+                    </div>
+                    <div class="cal-week"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+                    <div class="cal-grid">
+                        ${cells.map(d => {
+                            const iso = d.toISOString().split('T')[0];
+                            const isOther = d.getMonth() !== calMonth;
+                            const isToday = iso === todayStr;
+                            const isSelected = iso === selectedStr;
+                            return `<div class="cal-cell ${isOther ? 'is-other' : ''} ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}" data-date="${iso}">${d.getDate()}</div>`;
+                        }).join('')}
+                    </div>
+                </div>`;
+
+            panel.querySelector('#cal-prev').addEventListener('click', () => {
+                if (calMonth === 0) { calMonth = 11; calYear--; } else { calMonth--; }
+                renderCalendar();
             });
+            panel.querySelector('#cal-next').addEventListener('click', () => {
+                if (calMonth === 11) { calMonth = 0; calYear++; } else { calMonth++; }
+                renderCalendar();
+            });
+            panel.querySelectorAll('.cal-cell').forEach(cell => {
+                cell.addEventListener('click', () => {
+                    const val = cell.getAttribute('data-date');
+                    resInput.value = val;
+                    lbl.textContent = formatDateLabel(val);
+                    panel.classList.remove('show');
+                });
+            });
+        }
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            renderCalendar();
+            togglePanel(panel);
         });
     }
 
-    btnDate.addEventListener('click', (e) => {
-        e.stopPropagation();
-        renderCalendar();
-        togglePanel(calPanel, btnDate);
-    });
-    btnTime.addEventListener('click', (e) => {
-        e.stopPropagation();
-        renderTimeOptions();
-        togglePanel(timePanel, btnTime);
-    });
+    // Build time options UI for a given context
+    function wireTime(btn, panel, resInput, lbl) {
+        if (!btn || !panel || !resInput || !lbl) return;
+
+        function renderTimeOptions() {
+            const openHour = 7;  // 7:00
+            const closeHour = 22; // 10:00 PM
+            const stepMin = 15;
+            const options = [];
+            for (let h = openHour; h <= closeHour; h++) {
+                for (let m = 0; m < 60; m += stepMin) {
+                    const hh = String(h).padStart(2, '0');
+                    const mm = String(m).padStart(2, '0');
+                    options.push(`${hh}:${mm}`);
+                }
+            }
+            panel.innerHTML = options.map(t => `<button class="time-option" data-time="${t}">${formatTimeLabel(t)}</button>`).join('');
+            panel.querySelectorAll('.time-option').forEach(opt => {
+                opt.addEventListener('click', () => {
+                    const val = opt.getAttribute('data-time');
+                    resInput.value = val;
+                    lbl.textContent = formatTimeLabel(val);
+                    panel.classList.remove('show');
+                });
+            });
+        }
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            renderTimeOptions();
+            togglePanel(panel);
+        });
+    }
+
+    // Wire mobile set (if present)
+    wireCalendar(btnDate, calPanel, resDate, lblDate);
+    wireTime(btnTime, timePanel, resTime, lblTime);
+
+    // Wire desktop set (if present)
+    wireCalendar(btnDateDesk, calPanelDesk, resDateDesk, lblDateDesk);
+    wireTime(btnTimeDesk, timePanelDesk, resTimeDesk, lblTimeDesk);
 
     // Close on outside click
     document.addEventListener('click', (e) => {
-        if (!calPanel.contains(e.target) && !btnDate.contains(e.target)) calPanel.style.display = 'none';
-        if (!timePanel.contains(e.target) && !btnTime.contains(e.target)) timePanel.style.display = 'none';
+        [calPanel, timePanel, calPanelDesk, timePanelDesk].forEach(p => {
+            if (!p) return;
+            const isTrigger = (p === calPanel && btnDate && (btnDate.contains(e.target))) || (p === timePanel && btnTime && (btnTime.contains(e.target))) ||
+                              (p === calPanelDesk && btnDateDesk && (btnDateDesk.contains(e.target))) || (p === timePanelDesk && btnTimeDesk && (btnTimeDesk.contains(e.target)));
+            if (!p.contains(e.target) && !isTrigger) p.classList.remove('show');
+        });
     });
 
     // Reflect changes to labels (native fallback)
@@ -766,6 +804,42 @@ function showTab(tabName) {
         item.addEventListener('click', function() {
             console.log('Breadcrumb clicked:', this.textContent);
             // Add navigation logic here
+        });
+    });
+
+    // People selectors (mobile + desktop)
+    const btnPeople = document.getElementById('btn-people');
+    const peoplePanel = document.getElementById('people-panel');
+    const lblPeople = document.getElementById('lbl-people');
+
+    const btnPeopleDesk = document.getElementById('btn-people-desk');
+    const peoplePanelDesk = document.getElementById('people-panel-desk');
+    const lblPeopleDesk = document.getElementById('lbl-people-desk');
+
+    function wirePeople(btn, panel, labelEl) {
+        if (!btn || !panel || !labelEl) return;
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            panel.classList.toggle('show');
+        });
+        panel.querySelectorAll('[data-people]')?.forEach(opt => {
+            opt.addEventListener('click', () => {
+                const n = opt.getAttribute('data-people');
+                labelEl.textContent = `${n} ${n === '1' ? 'person' : 'people'}`;
+                panel.classList.remove('show');
+            });
+        });
+    }
+
+    wirePeople(btnPeople, peoplePanel, lblPeople);
+    wirePeople(btnPeopleDesk, peoplePanelDesk, lblPeopleDesk);
+
+    // extend outside-click close to people panels
+    document.addEventListener('click', (e) => {
+        [peoplePanel, peoplePanelDesk].forEach(p => {
+            if (!p) return;
+            const trigger = (p === peoplePanel && btnPeople && btnPeople.contains(e.target)) || (p === peoplePanelDesk && btnPeopleDesk && btnPeopleDesk.contains(e.target));
+            if (!p.contains(e.target) && !trigger) p.classList.remove('show');
         });
     });
 });

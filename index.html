@@ -10,9 +10,6 @@
 <body>
     <header class="header">
         <div class="header-left">
-            <button class="hamburger" aria-label="Open menu" onclick="openMobileMenu()">
-                <span></span><span></span><span></span>
-            </button>
         <div class="logo">OpenTable</div>
             <div class="location">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm1 3a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z" fill="#2D333F"></path><path d="M4 10a8 8 0 1 1 16 0c0 2.813-2.433 6.59-7.3 11.33a1 1 0 0 1-1.4 0C6.433 16.59 4 12.813 4 10Zm14 0a6 6 0 0 0-12 0c0 1.21.8 4 6 9.21 5.2-5.21 6-8 6-9.21Z" fill="#2D333F"></path></svg> 
@@ -28,6 +25,9 @@
             </nav>
             <button class="btn-signin">Sign in</button>
             <button class="sign-in">Open App</button>
+            <button class="hamburger" aria-label="Open menu" onclick="openMobileMenu()">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -60,7 +60,9 @@
                 <a href="#" class="store-badge google">
                     <img src="https://www.opentable.com/static/cfe/14/images/android-GLQYBZRN.svg" alt="">
                 </a>
-                <a href="#" class="store-badge apple">Download on the App Store</a>
+                <a href="#" class="store-badge apple">
+                    <img src="https://www.opentable.com/static/cfe/14/images/ios-53ROVG4N.svg" alt="">
+                </a>
             </div>
         </div>
     </div>
@@ -81,6 +83,90 @@
                     <span class="star">★</span>
                     <span class="rating-details">4.7 (490) • $40 and under • Breakfast</span>
                 </div>
+            </div>
+
+            <div class="booking-panel booking-mobile">
+                <h2 class="booking-title">Make a reservation</h2>
+
+                <div class="input-stack">
+                    <button id="btn-people" class="input-btn" type="button" style="position:relative;">
+                        <span class="left">👥 <span id="lbl-people">2 people</span></span>
+                        <span class="chevron">▾</span>
+                    </button>
+                    <div id="people-panel" class="dropdown-panel dropdown-up" style="display:none; position:absolute; bottom:100%; left:0; margin-bottom:4px; width: 220px;">
+                        <div class="people-options">
+                            <button class="time-option" data-people="1"><span class="person-icon">👤</span><span>1 person</span></button>
+                            <button class="time-option" data-people="2"><span class="person-icon">👤</span><span>2 people</span></button>
+                            <button class="time-option" data-people="3"><span class="person-icon">👤</span><span>3 people</span></button>
+                            <button class="time-option" data-people="4"><span class="person-icon">👤</span><span>4 people</span></button>
+                            <button class="time-option" data-people="5"><span class="person-icon">👤</span><span>5 people</span></button>
+                            <button class="time-option" data-people="6"><span class="person-icon">👤</span><span>6 people</span></button>
+                            <button class="time-option" data-people="7"><span class="person-icon">👤</span><span>7 people</span></button>
+                            <button class="time-option" data-people="8"><span class="person-icon">👤</span><span>8 people</span></button>
+                            <button class="time-option" data-people="9"><span class="person-icon">👤</span><span>9 people</span></button>
+                            <button class="time-option" data-people="10"><span class="person-icon">👤</span><span>10 people</span></button>
+                        </div>
+                    </div>
+                    <div class="input-grid">
+                        <button id="btn-date" class="input-btn" type="button" style="position:relative;">
+                            <span class="left">📅 <span id="btn-date-label">Select date</span></span>
+                            <span class="chevron">▾</span>
+                        </button>
+                        <button id="btn-time" class="input-btn" type="button" style="position:relative;">
+                            <span class="left">🕙 <span id="btn-time-label">Select time</span></span>
+                            <span class="chevron">▾</span>
+                        </button>
+                        <!-- custom dropdown containers -->
+                        <div id="time-panel" class="dropdown-panel time-panel" style="display:none;"></div>
+                    </div>
+                    <input id="res-date" class="native-picker" type="date" />
+                    <input id="res-time" class="native-picker" type="time" step="900" />
+                    <!-- custom dropdown containers -->
+                    <div id="calendar-panel" class="dropdown-panel" style="display:none;"></div>
+                </div>
+
+                <div class="info-alert" style="margin-top:12px;">
+                    <span class="dot">•</span>
+                    <span>At the moment, there's no online availability within 2.5 hours of 10:00 PM.</span>
+                </div>
+
+                <button class="primary-outline-btn" style="margin-top:10px;">Show next available</button>
+
+                <div class="form-group" style="margin-top:16px;">
+                    <label class="form-label">Select a time</label>
+                    <div class="time-slots">
+                        <button class="time-slot selected">6:30 PM*</button>
+                        <button class="time-slot">6:45 PM*</button>
+                        <button class="time-slot">7:00 PM*</button>
+                        <button class="time-slot">7:15 PM*</button>
+                        <button class="time-slot">7:30 PM*</button>
+                        <button class="notify-btn">🔔 Notify me</button>
+                    </div>
+                </div>
+
+                <div class="booking-info">
+                    🔄 Booked 18 times today
+                </div>
+
+                <div class="additional-options">
+                    🪑 Additional seating options
+                </div>
+
+                <div class="map-card">
+                    <iframe class="map-embed" src="https://www.google.com/maps?q=150%20King%20William%20Rd,%20Hyde%20Park,%20SA%205061&output=embed" loading="lazy"></iframe>
+                    <div class="address-row">
+                        🗺️ <span class="addr">150 King William Rd, Hyde Park, AU-SA 5061</span>
+                    </div>
+                </div>
+
+                <div class="section-title">Dining areas</div>
+                <div class="chips">
+                    <span class="chip">High Top</span>
+                    <span class="chip">Veranda</span>
+                    <span class="chip">Street Dining</span>
+                    <span class="chip">Inside</span>
+                </div>
+                <a class="view-more" href="#">View more</a>
             </div>
 
             <nav class="nav-tabs">
@@ -116,7 +202,7 @@
                         <button class="scroll-btn left" onclick="scrollRecommend('left')">‹</button>
                         <div class="recommend-grid">
                             <div class="recommend-card">
-                                <div class="recommend-photo"></div>
+                                <div class="recommend-photo asha-photo"></div>
                                 <div class="recommend-body">
                                     <div class="recommend-name">Asha</div>
                                     <div class="recommend-meta">★★★★★ <span>100 reviews</span></div>
@@ -130,10 +216,10 @@
                                 </div>
                             </div>
                             <div class="recommend-card">
-                                <div class="recommend-photo"></div>
+                                <div class="recommend-photo skyline-photo"></div>
                                 <div class="recommend-body">
                                     <div class="recommend-name">Skyline Restaurant</div>
-                                    <div class="recommend-meta">★★★★★ <span>25 reviews</span></div>
+                                    <div class="recommend-meta">★★★★☆ <span>25 reviews</span></div>
                                     <div class="recommend-meta">Australian • $$$$ • Adelaide</div>
                                     <div class="recommend-meta">Booked 2 times today</div>
                                     <div class="recommend-times">
@@ -144,7 +230,7 @@
                                 </div>
                             </div>
                             <div class="recommend-card">
-                                <div class="recommend-photo"></div>
+                                <div class="recommend-photo second-photo"></div>
                                 <div class="recommend-body">
                                     <div class="recommend-name">2nd of Something</div>
                                     <div class="recommend-meta">★★★★☆ <span>68 reviews</span></div>
@@ -154,6 +240,48 @@
                                         <span class="time-pill">6:45 PM</span>
                                         <span class="time-pill">7:30 PM</span>
                                         <span class="time-pill">8:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recommend-card">
+                                <div class="recommend-photo fusion-photo"></div>
+                                <div class="recommend-body">
+                                    <div class="recommend-name">Fusion Kitchen</div>
+                                    <div class="recommend-meta">★★★★★ <span>42 reviews</span></div>
+                                    <div class="recommend-meta">Asian Fusion • $$$ • Popular</div>
+                                    <div class="recommend-meta">Booked 5 times today</div>
+                                    <div class="recommend-times">
+                                        <span class="time-pill">6:30 PM</span>
+                                        <span class="time-pill">7:15 PM</span>
+                                        <span class="time-pill">8:30 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recommend-card">
+                                <div class="recommend-photo garden-photo"></div>
+                                <div class="recommend-body">
+                                    <div class="recommend-name">Garden Terrace</div>
+                                    <div class="recommend-meta">★★★★☆ <span>89 reviews</span></div>
+                                    <div class="recommend-meta">Mediterranean • $$$$ • Romantic</div>
+                                    <div class="recommend-meta">Booked 12 times today</div>
+                                    <div class="recommend-times">
+                                        <span class="time-pill">6:00 PM</span>
+                                        <span class="time-pill">7:45 PM</span>
+                                        <span class="time-pill">9:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recommend-card">
+                                <div class="recommend-photo urban-photo"></div>
+                                <div class="recommend-body">
+                                    <div class="recommend-name">Urban Bistro</div>
+                                    <div class="recommend-meta">★★★★★ <span>156 reviews</span></div>
+                                    <div class="recommend-meta">Modern European • $$$ • Trendy</div>
+                                    <div class="recommend-meta">Booked 18 times today</div>
+                                    <div class="recommend-times">
+                                        <span class="time-pill">6:15 PM</span>
+                                        <span class="time-pill">7:00 PM</span>
+                                        <span class="time-pill">8:15 PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -1206,29 +1334,44 @@
             </div>
         </div>
 
-        <div class="booking-panel">
+        <div class="booking-panel booking-desktop">
             <h2 class="booking-title">Make a reservation</h2>
 
             <div class="input-stack">
-                <button class="input-btn">
-                    <span class="left">👥 <span>2 people</span></span>
+                <button id="btn-people-desk" class="input-btn" type="button" style="position:relative;">
+                    <span class="left">👥 <span id="lbl-people-desk">2 people</span></span>
                     <span class="chevron">▾</span>
                 </button>
-                <div class="input-grid">
-                    <button id="btn-date" class="input-btn" type="button" style="position:relative;">
-                        <span class="left">📅 <span id="btn-date-label">Select date</span></span>
-                        <span class="chevron">▾</span>
-                    </button>
-                    <button id="btn-time" class="input-btn" type="button" style="position:relative;">
-                        <span class="left">🕙 <span id="btn-time-label">Select time</span></span>
-                        <span class="chevron">▾</span>
-                    </button>
+                <div id="people-panel-desk" class="dropdown-panel dropdown-up" style="display:none; position:absolute; bottom:100%; left:0; margin-bottom:4px; width: 220px;">
+                    <div class="people-options">
+                        <button class="time-option" data-people="1"><span class="person-icon">👤</span><span>1 person</span></button>
+                        <button class="time-option" data-people="2"><span class="person-icon">👤</span><span>2 people</span></button>
+                        <button class="time-option" data-people="3"><span class="person-icon">👤</span><span>3 people</span></button>
+                        <button class="time-option" data-people="4"><span class="person-icon">👤</span><span>4 people</span></button>
+                        <button class="time-option" data-people="5"><span class="person-icon">👤</span><span>5 people</span></button>
+                        <button class="time-option" data-people="6"><span class="person-icon">👤</span><span>6 people</span></button>
+                        <button class="time-option" data-people="7"><span class="person-icon">👤</span><span>7 people</span></button>
+                        <button class="time-option" data-people="8"><span class="person-icon">👤</span><span>8 people</span></button>
+                        <button class="time-option" data-people="9"><span class="person-icon">👤</span><span>9 people</span></button>
+                        <button class="time-option" data-people="10"><span class="person-icon">👤</span><span>10 people</span></button>
+                    </div>
                 </div>
-                <input id="res-date" class="native-picker" type="date" />
-                <input id="res-time" class="native-picker" type="time" step="900" />
+                <div class="input-grid">
+                    <button id="btn-date-desk" class="input-btn" type="button" style="position:relative;">
+                        <span class="left">📅 <span id="btn-date-label-desk">Select date</span></span>
+                        <span class="chevron">▾</span>
+                    </button>
+                    <button id="btn-time-desk" class="input-btn" type="button" style="position:relative;">
+                        <span class="left">🕙 <span id="btn-time-label-desk">Select time</span></span>
+                        <span class="chevron">▾</span>
+                    </button>
+                    <!-- custom dropdown containers -->
+                    <div id="time-panel-desk" class="dropdown-panel time-panel" style="display:none;"></div>
+                </div>
+                <input id="res-date-desk" class="native-picker" type="date" />
+                <input id="res-time-desk" class="native-picker" type="time" step="900" />
                 <!-- custom dropdown containers -->
-                <div id="calendar-panel" class="dropdown-panel" style="display:none;"></div>
-                <div id="time-panel" class="dropdown-panel time-panel" style="display:none;"></div>
+                <div id="calendar-panel-desk" class="dropdown-panel" style="display:none;"></div>
             </div>
 
             <div class="info-alert" style="margin-top:12px;">
@@ -1427,7 +1570,7 @@
         </div>
     </footer>
 <script src="main.js"></script>
-<script>
+    <script>
     function toggleDrawerAccordion(el) {
         const group = el.closest('.drawer-group');
         group.classList.toggle('open');
@@ -1439,10 +1582,10 @@
         const scrollAmount = 300;
         if (direction === 'left') {
             grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        } else {
+                    } else {
             grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     }
-</script>
+    </script>
 </body>
 </html>
