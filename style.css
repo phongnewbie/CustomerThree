@@ -53,6 +53,17 @@ body {
 }
 
 @media (max-width: 768px) {
+    .body{
+        font-size: 10px;
+    }
+    .tags{
+        width: auto !important;
+        font-size: 10px;
+    }
+    .about-section{
+        max-width: 100%;
+        font-size: 11px;
+    }
     .location { display: none !important; }
     .hamburger { display: inline-block; }
     .header-left { order: 1; }
@@ -62,6 +73,97 @@ body {
     .sign-in { background: #dc2626; border-radius: 999px; padding: 10px 18px; font-weight: 700; box-shadow: 0 2px 4px rgba(0,0,0,.08); }
     /* Hide sign-in button on mobile */
     .btn-signin { display: none; }
+}
+
+/* Ultra-compact for small phones: halve sizes */
+@media (max-width: 480px) {
+    .booking-title { font-size: 12px; margin: 6px 0 8px; }
+    .input-grid { gap: 6px; }
+    .input-btn { padding: 6px 8px; font-size: 10px; min-height: 28px; border-radius: 4px; }
+    .chevron { font-size: 10px; }
+    .input-btn .left { gap: 4px; }
+
+    .info-alert { padding: 6px 8px; font-size: 10px; border-radius: 4px; }
+    .notify-outline, .primary-outline-btn { min-height: 32px; padding: 8px 10px; font-size: 11px; border-radius: 4px; }
+
+    .form-group .form-label { font-size: 11px; margin-bottom: 6px; }
+    .time-slots { grid-template-columns: repeat(4, 1fr) !important; gap: 4px !important; }
+    .time-slot { min-height: 24px; padding: 3px 2px; font-size: 9px; border-radius: 4px; }
+
+    .booking-info, .additional-options { padding: 6px 8px; font-size: 11px; border-radius: 4px; }
+    .map-embed { height: 120px; }
+    .address-row { padding: 6px 8px; font-size: 11px; }
+
+    .section-title { font-size: 12px; }
+    .chip { padding: 4px 8px; font-size: 11px; border-radius: 4px; }
+
+    .tab-content { padding: 10px 8px; }
+    /* Tabs: revert to original inline layout */
+    .nav-tabs { display: flex; border-bottom: 1px solid #eee; width: auto; gap: 0; }
+    .nav-tab { padding: 8px 6px; font-size: 11px; width: auto; border: none; border-radius: 0; }
+    .nav-tab::after { display: block; }
+    .nav-tab.active { color: #da3743; border: none; background: transparent; }
+    .restaurant-title { font-size: 18px; }
+    .rating-details { font-size: 12px; }
+}
+
+@media (max-width: 360px) {
+    /* On very narrow phones, use 2 columns for tabs */
+    .nav-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Ensure long text wraps on mobile and containers don't force overflow */
+@media (max-width: 768px) {
+    /* Containers that participate in flex/grid should allow shrinking */
+    .container,
+    .main-content,
+    .tab-content,
+    .about-section,
+    .booking-panel,
+    .reviews-section,
+    .faqs-section,
+    .breadcrumb-nav,
+    .input-grid,
+    .chips,
+    .address-row,
+    .menu-items,
+    .menu-item,
+    .reviews-overview,
+    .rating-info {
+        min-width: 0;
+    }
+
+    /* Text elements: wrap and hyphenate when needed */
+    .restaurant-title,
+    .rating-details,
+    .description,
+    .info-alert,
+    .addr,
+    .chip,
+    .loved-chip,
+    .review-comment,
+    .ai-note,
+    .summary-text,
+    .faq-header h4,
+    .menu-item-info p,
+    .menu-note,
+    .recommend-meta,
+    .form-label,
+    .nav-tab,
+    .booking-info,
+    .additional-options {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    /* Media should never overflow */
+    img,
+    iframe {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 @media (min-width: 769px) {
@@ -1698,6 +1800,7 @@ body {
 
     /* Photos grid */
     .photos-grid {
+        width: 333px;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
         height: auto;
@@ -2306,6 +2409,10 @@ body {
 
     /* People dropdown width on mobile */
     .booking-mobile #people-panel { width: 180px; }
+
+    /* Balanced tags layout */
+    .tags { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100% !important; }
+    .tag { text-align: center; padding: 6px 8px; font-size: 12px; border-radius: 999px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
 
 /* Extra-narrow phones */
@@ -2314,6 +2421,7 @@ body {
     .time-slot { min-height: 32px; padding: 6px 4px; font-size: 11px; border-radius: 5px; }
     .notify-btn { min-height: 36px; font-size: 13px; }
     .input-btn { padding: 9px 10px; font-size: 13px; }
+    .tags { grid-template-columns: 1fr 1fr; }
 }
 
 /* Hide Restaurants you may also like everywhere */
