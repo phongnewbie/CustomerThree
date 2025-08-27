@@ -2568,3 +2568,130 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .time-option { gap: 6px; font-size: 12px; padding: 6px 8px; }
     .person-icon { width: 16px; }
 }
+
+/* Photos section mobile - tăng khoảng cách */
+.photos-section h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    margin-top: 24px;
+}
+
+.photos-subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.photos-grid {
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.photo-item {
+    margin-bottom: 8px;
+}
+
+/* Details section mobile - tăng khoảng cách */
+.details-section {
+    margin-top: 48px;
+    padding-top: 36px;
+}
+
+.details-section h3 {
+    font-size: 20px;
+    margin-bottom: 28px;
+}
+
+.map-container {
+    margin-bottom: 36px;
+}
+
+.details-map {
+    height: 250px;
+}
+
+.dining-areas {
+    margin-bottom: 36px;
+}
+
+.dining-areas h4 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.dining-buttons {
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.dining-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.contact-info {
+    gap: 20px;
+}
+
+.info-row {
+    gap: 16px;
+    padding: 8px 0;
+}
+
+.info-icon {
+    font-size: 16px;
+    width: 24px;
+}
+
+.info-text {
+    font-size: 14px;
+}
+
+/* FAQs section mobile - tăng khoảng cách */
+.faqs-section {
+    margin-top: 48px;
+    padding-top: 36px;
+}
+
+.faqs-section h3 {
+    font-size: 20px;
+    margin-bottom: 28px;
+}
+
+.faq-item {
+    padding: 24px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.faq-header {
+    margin-bottom: 16px;
+    gap: 16px;
+}
+
+.faq-header h4 {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-right: 20px;
+}
+
+.faq-arrow {
+    font-size: 14px;
+}
+
+.faq-answer {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Breadcrumb mobile - tăng khoảng cách */
+.breadcrumb-nav {
+    margin-top: 36px;
+    padding-top: 24px;
+    gap: 12px;
+    font-size: 13px;
+}
+
+.breadcrumb-separator {
+    margin: 0 6px;
+}
