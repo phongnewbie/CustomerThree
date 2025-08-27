@@ -238,10 +238,12 @@ function showTab(tabName) {
         }
     })();
 
-    // Toggle helpers using class 'show'
-    function togglePanel(panel) {
-        const visible = panel.classList.contains('show');
-        panel.classList.toggle('show', !visible);
+    // Toggle helpers using class 'show' with exclusivity across all popovers
+    const allPanels = [];
+    function toggleExclusive(targetPanel) {
+        const isVisible = targetPanel.classList.contains('show');
+        allPanels.forEach(p => { if (p) p.classList.remove('show'); });
+        if (!isVisible) targetPanel.classList.add('show');
     }
 
     // Build calendar UI for a given context (inputs/labels/panel)
@@ -311,7 +313,7 @@ function showTab(tabName) {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             renderCalendar();
-            togglePanel(panel);
+            toggleExclusive(panel);
         });
     }
 
@@ -345,7 +347,7 @@ function showTab(tabName) {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             renderTimeOptions();
-            togglePanel(panel);
+            toggleExclusive(panel);
         });
     }
 
@@ -357,6 +359,9 @@ function showTab(tabName) {
     wireCalendar(btnDateDesk, calPanelDesk, resDateDesk, lblDateDesk);
     wireTime(btnTimeDesk, timePanelDesk, resTimeDesk, lblTimeDesk);
 
+    // Register panels for exclusivity handling
+    [calPanel, timePanel, calPanelDesk, timePanelDesk].forEach(p => allPanels.push(p));
+
     // Close on outside click
     document.addEventListener('click', (e) => {
         [calPanel, timePanel, calPanelDesk, timePanelDesk].forEach(p => {
@@ -365,6 +370,65 @@ function showTab(tabName) {
                               (p === calPanelDesk && btnDateDesk && (btnDateDesk.contains(e.target))) || (p === timePanelDesk && btnTimeDesk && (btnTimeDesk.contains(e.target)));
             if (!p.contains(e.target) && !isTrigger) p.classList.remove('show');
         });
+    });
+
+    // Next Available Modal
+    const btnNextAvailable = document.getElementById('btn-next-available');
+    const modal = document.getElementById('next-available-modal');
+    const backdrop = document.getElementById('next-available-backdrop');
+    const btnModalClose = document.getElementById('modal-close');
+    const modalDays = document.getElementById('modal-days');
+
+    function renderModalPage(page) {
+        // Demo data generator: 3 days, 6 slots (some disabled) like screenshot
+        const today = new Date();
+        const days = [0,1,2].map(offset => {
+            const d = new Date(today);
+            d.setDate(today.getDate() + (page-1)*3 + offset);
+            return d;
+        });
+        const times = ['8:15 PM','8:30 PM','8:45 PM','9:00 PM','9:15 PM','9:30 PM'];
+        const html = days.map(d => `
+            <div class="modal-day">
+                <h5>${d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' })}</h5>
+                <div class="modal-times">
+                    ${times.map((t,i) => `<button class="modal-time-btn" ${i>1 ? 'disabled' : ''}>${t}*</button>`).join('')}
+                </div>
+            </div>`).join('');
+        modalDays.innerHTML = html;
+    }
+
+    function openModal() {
+        renderModalPage(1);
+        modal.classList.add('show');
+        backdrop.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        modal.classList.remove('show');
+        backdrop.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    if (btnNextAvailable && modal && backdrop) {
+        btnNextAvailable.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+        btnModalClose?.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', closeModal);
+    }
+
+    // Modal pagination
+    document.addEventListener('click', (e) => {
+        if (!(modal && modal.classList.contains('show'))) return;
+        const btn = e.target.closest('.modal-page');
+        if (!btn) return;
+        e.preventDefault();
+        const pages = Array.from(modal.querySelectorAll('.modal-page')).filter(b => b.dataset.page && b.dataset.page !== 'prev' && b.dataset.page !== 'next');
+        let current = pages.findIndex(b => b.classList.contains('active')) + 1;
+        const val = btn.dataset.page;
+        if (val === 'prev') current = Math.max(1, current - 1);
+        else if (val === 'next') current = Math.min(20, current + 1);
+        else current = parseInt(val, 10) || 1;
+        pages.forEach((b, i) => b.classList.toggle('active', i+1 === current));
+        renderModalPage(current);
     });
 
     // Reflect changes to labels (native fallback)
@@ -820,7 +884,7 @@ function showTab(tabName) {
         if (!btn || !panel || !labelEl) return;
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            panel.classList.toggle('show');
+            toggleExclusive(panel);
         });
         panel.querySelectorAll('[data-people]')?.forEach(opt => {
             opt.addEventListener('click', () => {
@@ -833,6 +897,7 @@ function showTab(tabName) {
 
     wirePeople(btnPeople, peoplePanel, lblPeople);
     wirePeople(btnPeopleDesk, peoplePanelDesk, lblPeopleDesk);
+    [peoplePanel, peoplePanelDesk].forEach(p => allPanels.push(p));
 
     // extend outside-click close to people panels
     document.addEventListener('click', (e) => {
